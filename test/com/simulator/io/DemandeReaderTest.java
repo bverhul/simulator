@@ -3,6 +3,7 @@ package com.simulator.io;
 import com.simulator.sd.Demande;
 import com.simulator.sd.Demandes;
 import com.simulator.sd.Sommet;
+import com.simulator.sd.Terminal;
 import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
@@ -14,7 +15,7 @@ class DemandeReaderTest {
 
     @Test
     void demandeRead() throws IOException {
-        List<Sommet> liste = TopologyReader.getSommets("test/com/simulator/io/test_topologie.txt");
+        List<Terminal> liste = TopologyReader.getSommets("test/com/simulator/io/test_topologie.txt");
         System.out.println(liste.toString());
         Demandes demandes = DemandeReader.DemandeRead("test/com/simulator/io/test_demandes.txt",liste);
         List<Demande> l_demandes = demandes.getDemandeList();
