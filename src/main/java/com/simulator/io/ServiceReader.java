@@ -2,13 +2,16 @@ package com.simulator.io;
 
 import com.simulator.sd.*;
 
-import java.io.*;
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.*;
 
 public class ServiceReader {
     public static Services ServicesRead(String file, Topologie topologie) throws IOException {
         Services services = new Services();
-        List<Sommet> l_sommet = topologie.sommets;
+        List<Terminal> l_terminal = topologie.terminals;
         File f = new File(file);
         if(f.exists()) {
             FileReader inFileStream = new FileReader(f);
@@ -20,8 +23,8 @@ public class ServiceReader {
                 String[] args = line.split(";");
                 System.out.println("Args: "+Arrays.toString(args)+",size="+args.length);
                 /* todo : lire les args */
-                Optional<Sommet> optn_depart_s = l_sommet.stream().filter(e->e.getName().equals(args[1])).findFirst();
-                Optional<Sommet> optn_arrivee_s = l_sommet.stream().filter(e->e.getName().equals(args[2])).findFirst();
+                Optional<Terminal> optn_depart_s = l_terminal.stream().filter(e->e.getName().equals(args[1])).findFirst();
+                Optional<Terminal> optn_arrivee_s = l_terminal.stream().filter(e->e.getName().equals(args[2])).findFirst();
                 if(!optn_arrivee_s.isPresent() || !optn_depart_s.isPresent())throw new NullPointerException();
                 /* paramètre leg */
                 List<Leg> list_leg = new ArrayList<>();
@@ -30,8 +33,8 @@ public class ServiceReader {
                 String[] duree_leg_name = args[5].split(",");
                 for(int i = 0 ; i < legs_name.length ; i++){
                    String[] startEnd_chemin = chemin_leg_name[i].split("-");
-                   Optional<Sommet> optn_depart_leg = l_sommet.stream().filter(e->e.getName().equals(startEnd_chemin[0])).findFirst();
-                   Optional<Sommet> optn_arrivee_leg = l_sommet.stream().filter(e->e.getName().equals(startEnd_chemin[1])).findFirst();
+                   Optional<Terminal> optn_depart_leg = l_terminal.stream().filter(e->e.getName().equals(startEnd_chemin[0])).findFirst();
+                   Optional<Terminal> optn_arrivee_leg = l_terminal.stream().filter(e->e.getName().equals(startEnd_chemin[1])).findFirst();
                    if(!optn_depart_leg.isPresent() || !optn_arrivee_leg.isPresent())throw new NullPointerException();
                    list_leg.add(new Leg(optn_depart_leg.get(),optn_arrivee_leg.get(),legs_name[i],Integer.parseInt(duree_leg_name[i])));
                 }
@@ -39,16 +42,16 @@ public class ServiceReader {
                 // todo
                 String[] stops_start = args[10].split(",");
                 String[] stops_end = args[11].split(",");
-                Map<Sommet,Integer> map_stops_start = new HashMap<>(),map_stops_stop = new HashMap<>();
+                Map<Terminal,Integer> map_stops_start = new HashMap<>(),map_stops_stop = new HashMap<>();
                 Arrays.stream(stops_start).forEach(stop_start->{
                     String[] args2 = stop_start.split(":");
-                    Optional<Sommet> optn_sommet = l_sommet.stream().filter(e->e.getName().equals(args2[0])).findFirst();
+                    Optional<Terminal> optn_sommet = l_terminal.stream().filter(e->e.getName().equals(args2[0])).findFirst();
                     if(!optn_sommet.isPresent())throw new NullPointerException();
                     map_stops_start.put(optn_sommet.get(),Integer.parseInt(args2[1]));
                 });
                 Arrays.stream(stops_end).forEach(stop_start->{
                     String[] args2 = stop_start.split(":");
-                    Optional<Sommet> optn_sommet = l_sommet.stream().filter(e->e.getName().equals(args2[0])).findFirst();
+                    Optional<Terminal> optn_sommet = l_terminal.stream().filter(e->e.getName().equals(args2[0])).findFirst();
                     if(!optn_sommet.isPresent())throw new NullPointerException();
                     map_stops_stop.put(optn_sommet.get(),Integer.parseInt(args2[1]));
                 });
