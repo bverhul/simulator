@@ -33,39 +33,30 @@ public class Service {
     public int getId() {
         return id;
     }
-
     public Terminal getDepart() {
         return depart;
     }
-
     public Terminal getArrivee() {
         return arrivee;
     }
-
     public int getT_debut_charg() {
         return t_debut_charg;
     }
-
     public int getT_fin_charg() {
         return t_fin_charg;
     }
-
     public int getT_premier_leg() {
         return t_premier_leg;
     }
-
     public Map<Terminal, Integer> getT_debut_stops() {
         return t_debut_stops;
     }
-
     public Map<Terminal, Integer> getT_fin_stops() {
         return t_fin_stops;
     }
-
     public List<Leg> getList_leg() {
         return list_leg;
     }
-
     public int getT_dest() {
         return t_dest;
     }

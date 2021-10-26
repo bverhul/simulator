@@ -5,7 +5,11 @@ import com.brunomnsilva.smartgraph.graphview.SmartGraphPanel;
 import com.brunomnsilva.smartgraph.graphview.SmartPlacementStrategy;
 import com.simulator.Simulator;
 import com.simulator.events.Event;
+import com.simulator.io.DemandeReader;
+import com.simulator.io.ServiceReader;
 import com.simulator.io.TopologyReader;
+import com.simulator.sd.Demandes;
+import com.simulator.sd.Services;
 import com.simulator.sd.Timeline;
 import com.simulator.sd.Topologie;
 import javafx.fxml.FXML;
@@ -26,7 +30,9 @@ public class HelloController {
 
     public HelloController() throws IOException {
         Topologie topologie = TopologyReader.TopologyRead("1_topologie.txt");
-        this.simulator = new Simulator(topologie);
+        Services services = ServiceReader.ServicesRead("1_services.txt",topologie);
+        Demandes demandes = DemandeReader.DemandeRead("1_demande.txt",topologie.terminals);
+        this.simulator = new Simulator(topologie, demandes,services);
 
         this.simulator.addEvent(new Event(50));
         this.simulator.addEvent(new Event(5));
