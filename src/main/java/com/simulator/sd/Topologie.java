@@ -8,22 +8,22 @@ import java.util.List;
 
 public class Topologie {
     public int[][] graphe;
-    public List<Sommet> sommets;
+    public List<Terminal> terminals;
 
-    public Topologie(List<Sommet> liste){
+    public Topologie(List<Terminal> liste){
         this.graphe = new int[liste.size()][liste.size()];
-        this.sommets = liste;
+        this.terminals = liste;
     }
 
-    public boolean canMove(Sommet a, Sommet b){
-        int positionServiceA = sommets.indexOf(a);
-        int positionServiceB = sommets.indexOf(b);
+    public boolean canMove(Terminal a, Terminal b){
+        int positionServiceA = terminals.indexOf(a);
+        int positionServiceB = terminals.indexOf(b);
         return this.graphe[positionServiceA][positionServiceB] != 0;
     }
 
-    public void setArc(Sommet a, Sommet b){
-        int positionServiceA = sommets.indexOf(a);
-        int positionServiceB = sommets.indexOf(b);
+    public void setArc(Terminal a, Terminal b){
+        int positionServiceA = terminals.indexOf(a);
+        int positionServiceB = terminals.indexOf(b);
         this.graphe[positionServiceA][positionServiceB] = 1;
     }
 
@@ -38,7 +38,7 @@ public class Topologie {
             sb.append("\n");
         }
         sb.append("graphe=").append(Arrays.toString(graphe));
-        sb.append(",\nservices=").append(sommets);
+        sb.append(",\nservices=").append(terminals);
         sb.append('}');
         return sb.toString();
     }
@@ -49,12 +49,12 @@ public class Topologie {
      */
     public Graph<String,String> getGraphUI(){
         Graph<String, String> g = new GraphEdgeList<>();
-        sommets.forEach(sommet -> g.insertVertex(sommet.getName()));
+        terminals.forEach(sommet -> g.insertVertex(sommet.getName()));
         int nb_edge = 1;
         for(int i = 0 ; i < graphe.length ; i++){
             for(int j = 0 ; j < graphe.length ; j++){
-                if(canMove(sommets.get(i),sommets.get(j))){
-                    g.insertEdge(sommets.get(i).getName(),sommets.get(j).getName(),String.valueOf(nb_edge));
+                if(canMove(terminals.get(i), terminals.get(j))){
+                    g.insertEdge(terminals.get(i).getName(), terminals.get(j).getName(),String.valueOf(nb_edge));
                     nb_edge++;
                 }
             }

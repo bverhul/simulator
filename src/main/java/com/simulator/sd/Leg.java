@@ -1,11 +1,11 @@
 package com.simulator.sd;
 
 public class Leg {
-    public Sommet start,end;
+    public Terminal start,end;
     public String name;
     public int duree;
 
-    public Leg(Sommet start, Sommet end, String name, int duree) {
+    public Leg(Terminal start, Terminal end, String name, int duree) {
         this.start = start;
         this.end = end;
         this.name = name;

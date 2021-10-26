@@ -8,16 +8,16 @@ import java.util.Map;
  */
 public class Service {
     private int id;
-    private Sommet depart,arrivee;
+    private Terminal depart,arrivee;
 
     private int t_debut_charg;
     private int t_fin_charg;
     private int t_premier_leg;
     private int t_dest;
-    private Map<Sommet,Integer> t_debut_stops,t_fin_stops;
+    private Map<Terminal,Integer> t_debut_stops,t_fin_stops;
     private List<Leg> list_leg;
 
-    public Service(int id, Sommet depart, Sommet arrivee, int t_debut_charg, int t_fin_charg, int t_premier_leg, int t_dest,Map<Sommet, Integer> t_debut_stops, Map<Sommet, Integer> t_fin_stops, List<Leg> list_leg) {
+    public Service(int id, Terminal depart, Terminal arrivee, int t_debut_charg, int t_fin_charg, int t_premier_leg, int t_dest, Map<Terminal, Integer> t_debut_stops, Map<Terminal, Integer> t_fin_stops, List<Leg> list_leg) {
         this.id = id;
         this.depart = depart;
         this.arrivee = arrivee;
@@ -34,11 +34,11 @@ public class Service {
         return id;
     }
 
-    public Sommet getDepart() {
+    public Terminal getDepart() {
         return depart;
     }
 
-    public Sommet getArrivee() {
+    public Terminal getArrivee() {
         return arrivee;
     }
 
@@ -54,11 +54,11 @@ public class Service {
         return t_premier_leg;
     }
 
-    public Map<Sommet, Integer> getT_debut_stops() {
+    public Map<Terminal, Integer> getT_debut_stops() {
         return t_debut_stops;
     }
 
-    public Map<Sommet, Integer> getT_fin_stops() {
+    public Map<Terminal, Integer> getT_fin_stops() {
         return t_fin_stops;
     }
 
