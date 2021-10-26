@@ -25,5 +25,17 @@ class ServiceReaderTest {
         /* vérification des legs */
         List<Leg> l_leg = s.getList_leg();
         assertEquals(2,l_leg.size());
+        Leg leg1 = l_leg.get(0);
+        assertEquals(1,leg1.duree);
+        assertEquals(topologie.sommets.get(0),leg1.start);
+        assertEquals(topologie.sommets.get(1),leg1.end);
+        assertEquals("l1",leg1.name);
+        Leg leg2 = l_leg.get(1);
+        assertEquals(1,leg2.duree);
+        assertEquals(topologie.sommets.get(1),leg2.start);
+        assertEquals(topologie.sommets.get(2),leg2.end);
+        assertEquals("l2",leg2.name);
+        // todo : vérifications des autres champs moins sensibles
+        System.out.println("Service = "+s);
     }
 }
