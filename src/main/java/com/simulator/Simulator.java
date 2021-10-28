@@ -19,10 +19,29 @@ public class Simulator {
     private Services services;
 
     public Simulator(Topologie topologie, Demandes demandes, Services services){
-        this.timeline = new Timeline();
         this.topologie = topologie;
         this.services = services;
         this.demandes = demandes;
+        initTimeline();
+    }
+
+    private void initTimeline(){
+        this.timeline = new Timeline();
+        /* permet d'ajouter les déplacements pour chaque service */
+        services.getL_service().forEach(this::initTimelineSingleService);
+    }
+    /**
+     * Préparer la liste des évènements pour un service
+     */
+    private void initTimelineSingleService(Service service){
+        int i = 0;
+        List<Leg> list_leg = service.getList_leg();
+        for(Leg leg : list_leg){
+            this.timeline.addEvent(new MoveBarge(i,leg.start,leg.end,service));
+            i += leg.duree;/* temps de déplacement dans le leg */
+            /* todo : event de pause */
+            // todo :  voir pour ajouter les pauses
+        }
     }
 
     public void moveNextStep(){
@@ -32,10 +51,14 @@ public class Simulator {
             Logger.getGlobal().info("Fin de simulation");
         }else {
             if (e instanceof MoveBarge) {
+                MoveBarge moveBarge = (MoveBarge)e;
                 Logger.getGlobal().info("Déplacement de barge");
+                Logger.getGlobal().info(moveBarge.toString());
                 /* todo : gérer le déplacement de barge */
             } else if (e instanceof LoadUnload) {
+                LoadUnload loadUnload = (LoadUnload)e;
                 Logger.getGlobal().info("Chargement/Déchargement");
+                Logger.getGlobal().info(loadUnload.toString());
                 /* todo : gérer le chargement/déchargement */
             } else {
                 Logger.getGlobal().warning("Evènement non reconnu !");
