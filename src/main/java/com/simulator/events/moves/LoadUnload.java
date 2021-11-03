@@ -4,7 +4,7 @@ import com.simulator.events.Event;
 import com.simulator.sd.Barge;
 import com.simulator.sd.Terminal;
 
-// todo
+// todo : à changer pour utiliser des containers
 public class LoadUnload extends Event {
     private boolean isLoading;
     private int quantite;
