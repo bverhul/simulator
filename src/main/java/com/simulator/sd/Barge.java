@@ -1,14 +1,18 @@
 package com.simulator.sd;
 
+import java.util.List;
+
 import com.simulator.state.BargeS;
 
 public class Barge {
 	BargeS etat_barge;
-	int position;
+	int positionTerminal;
+	Leg position_sur_leg;
+	List<Container>lesContainers;
 	public Barge(BargeS etat_barge, int position) {
 		super();
 		this.etat_barge = etat_barge;
-		this.position = position;
+		this.positionTerminal = position;
 	}
 	
 	
@@ -19,11 +23,19 @@ public class Barge {
 		this.etat_barge = etat_barge;
 	}
 	public int getPosition() {
-		return position;
+		return positionTerminal;
 	}
 	public void setPosition(int position) {
-		this.position = position;
+		
+		this.positionTerminal = position;
 	}
-	
-	
+	int  localiserBarge_sur_Terminal()
+	{
+		this.positionTerminal = (Integer) null;
+		return positionTerminal;
+	}
+	Leg localisation_sur_Leg()
+	{
+		return position_sur_leg;
+	}
 }
