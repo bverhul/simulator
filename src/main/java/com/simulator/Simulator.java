@@ -48,7 +48,7 @@ public class Simulator {
         }
 
         if(demande.dateDepart == this.timeline.getT()){
-            // todo : ajout des conteneurs dans le terminal
+            containers.forEach(demande.depart::ajouterContainer);
         }else{
             /* programmer l'arrivée des containers dans le simulateur */
             this.timeline.addEvent(new ArriveeContainer(

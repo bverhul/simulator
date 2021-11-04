@@ -20,8 +20,9 @@ public class Service {
     private Map<Terminal,Integer> t_debut_stops,t_fin_stops;
     private List<Leg> list_leg;
     private List<Terminal> list_terminals;
+    private List<Barge> list_barges;
     ServiceS etat_service;
-    public Service(int id, Terminal depart, Terminal arrivee, int t_debut_charg, int t_fin_charg, int t_premier_leg, int t_dest, Map<Terminal, Integer> t_debut_stops, Map<Terminal, Integer> t_fin_stops, List<Leg> list_leg) {
+    public Service(int id, Terminal depart, Terminal arrivee, int t_debut_charg, int t_fin_charg, int t_premier_leg, int t_dest, Map<Terminal, Integer> t_debut_stops, Map<Terminal, Integer> t_fin_stops, List<Leg> list_leg, List<Barge> list_barges) {
         this.id = id;
         this.depart = depart;
         this.arrivee = arrivee;
@@ -35,6 +36,7 @@ public class Service {
         this.etat_service = ServiceS.OUVERT;
         list_terminals = new ArrayList<Terminal>();
         list_leg =new ArrayList<Leg>();
+        this.list_barges = list_barges;
     }
 
     public int getId() {
@@ -66,6 +68,9 @@ public class Service {
     }
     public int getT_dest() {
         return t_dest;
+    }
+    public List<Barge> getList_barges() {
+        return list_barges;
     }
 
     @Override
