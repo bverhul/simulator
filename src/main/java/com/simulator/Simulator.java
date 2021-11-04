@@ -106,6 +106,19 @@ public class Simulator {
     public Timeline getTimeline() {
         return timeline;
     }
+
+    public Topologie getTopologie() {
+        return topologie;
+    }
+
+    public Demandes getDemandes() {
+        return demandes;
+    }
+
+    public Services getServices() {
+        return services;
+    }
+
     public boolean addEvent(Event e){
         return timeline.addEvent(e);
     }
