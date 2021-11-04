@@ -14,6 +14,7 @@ import com.simulator.sd.Timeline;
 import com.simulator.sd.Topologie;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 
 import java.io.IOException;
@@ -24,15 +25,14 @@ public class HelloController {
 
     private SmartGraphPanel<String, String> graphView;
 
-    @FXML
-    private Label t_sim;
-    @FXML
-    private StackPane mainPanel;
+    @FXML private Label t_sim;
+    @FXML private StackPane mainPanel;
+    @FXML private Pane pane_barges;
 
     public HelloController() throws IOException {
         Topologie topologie = TopologyReader.TopologyRead("1_topologie.txt");
         Services services = ServiceReader.ServicesRead("1_services.txt",topologie);
-        Demandes demandes = DemandeReader.DemandeRead("1_demande.txt",topologie.terminals);
+        Demandes demandes = DemandeReader.DemandeRead("1_demandes.txt",topologie.terminals);
         this.simulator = new Simulator(topologie, demandes,services);
 
         SmartPlacementStrategy strategy = new SmartCircularSortedPlacementStrategy();

@@ -4,8 +4,10 @@ import com.simulator.events.Event;
 import com.simulator.sd.Barge;
 import com.simulator.sd.Container;
 import com.simulator.sd.Terminal;
+import com.simulator.state.ContainerS;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 // todo : à changer pour utiliser des containers
 public class LoadUnload extends Event {
@@ -38,18 +40,28 @@ public class LoadUnload extends Event {
      */
     public void transfert(){
         List<Container> containerList;
+        List<Container> new_list_barge = barge.getLesContainers();
         if(isLoading){
             /* chargement */
             /* récupère les élements à charger */
-
+            // todo : adapter pour prendre les containers les plus appropriés
+            containerList = terminal.lesContainersSurTerminal;
+            terminal.lesContainersSurTerminal.clear();
+            new_list_barge.addAll(containerList);
             /* envoie les éléments pour chargement */
         }else{
             /* déchargement */
             /* récupère les élements à charger */
-
+            containerList = barge.getLesContainers().stream().filter(container -> container.getTerminal_destination().equals(terminal)).collect(Collectors.toList());
             /* envoie les éléments pour chargement */
-        }
+            containerList.forEach(container -> {
+                terminal.ajouterContainer(container);
+                container.setContainerService(ContainerS.CHARGEMENT_DECHARGEMENT);
+            });
+            new_list_barge.removeAll(containerList);
 
+        }
+        barge.setLesContainers(new_list_barge);
     }
 
     public boolean isLoading() {

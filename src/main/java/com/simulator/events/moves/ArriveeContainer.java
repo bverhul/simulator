@@ -42,4 +42,13 @@ public class ArriveeContainer extends Event {
     public void setTerminal(Terminal terminal) {
         this.terminal = terminal;
     }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("ArriveeContainer{");
+        sb.append("liste=").append(liste);
+        sb.append(", terminal=").append(terminal);
+        sb.append('}');
+        return sb.toString();
+    }
 }

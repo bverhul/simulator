@@ -40,8 +40,8 @@ public class Simulator {
         List<Container> containers = new ArrayList<>();
         /* création des conteneurs */
         for(int i = 0 ; i < nbConteneurs ; i++){
-            // todo : vide ou rempli, mis à défaut avec vrai
-            Container c = new Container(true,Integer.parseInt(demande.type), ContainerS.EN_ATTENTE);
+            // todo : vide ou rempli, mis à défaut avec vrai, poid_vide_containers
+            Container c = new Container(true,2d, ContainerS.EN_ATTENTE);
             c.setTerminal_destination(demande.arrivee);
             c.setTerminal_depard(demande.depart);
             containers.add(c);
