@@ -2,7 +2,10 @@ package com.simulator.events.moves;
 
 import com.simulator.events.Event;
 import com.simulator.sd.Barge;
+import com.simulator.sd.Container;
 import com.simulator.sd.Terminal;
+
+import java.util.List;
 
 // todo : à changer pour utiliser des containers
 public class LoadUnload extends Event {
@@ -28,5 +31,28 @@ public class LoadUnload extends Event {
         sb.append(", barge=").append(barge);
         sb.append('}');
         return sb.toString();
+    }
+
+    /**
+     * Permet de transférer les conteneurs
+     */
+    public void transfert(){
+        List<Container> containerList;
+        if(isLoading){
+            /* chargement */
+            /* récupère les élements à charger */
+
+            /* envoie les éléments pour chargement */
+        }else{
+            /* déchargement */
+            /* récupère les élements à charger */
+
+            /* envoie les éléments pour chargement */
+        }
+
+    }
+
+    public boolean isLoading() {
+        return isLoading;
     }
 }

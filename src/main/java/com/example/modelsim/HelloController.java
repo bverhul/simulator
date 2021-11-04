@@ -17,6 +17,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.StackPane;
 
 import java.io.IOException;
+import java.util.logging.Logger;
 
 public class HelloController {
     private Simulator simulator;
@@ -52,5 +53,10 @@ public class HelloController {
         /* màj du temps */
         Timeline timeline = this.simulator.getTimeline();
         this.t_sim.setText(timeline.getT() + "");
+    }
+
+    @FXML
+    public void showEvents(){
+        Logger.getGlobal().info(simulator.getTimeline().toString());
     }
 }
