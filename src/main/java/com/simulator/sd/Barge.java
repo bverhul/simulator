@@ -1,5 +1,6 @@
 package com.simulator.sd;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.simulator.state.BargeS;
@@ -18,6 +19,7 @@ public class Barge {
 		this.etat_barge = etat_barge;
 		this.positionTerminal = position;
 		this.vitesseBarge=v;
+		this.lesContainers = new ArrayList<>();
 	}
 
 
