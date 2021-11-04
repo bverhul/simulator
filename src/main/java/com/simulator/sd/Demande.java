@@ -16,6 +16,11 @@ public class Demande {
     public DemandeS state;
     public int t_state;/* dernier instant où l'état a été changé */
 
+    /**
+     * Nombre de containers livrés
+     */
+    private int nbLivrés;
+
     public Demande(String depart, String arrivee, int qte, int priorite, String type, int dateDepart, int dateArrivee,  List<Terminal> l_terminal){
         this.priorite = priorite;
         this.quantite = qte;
@@ -64,5 +69,18 @@ public class Demande {
         this.t_state = t;
         this.state = state;
         return true;
+    }
+
+    public void addLivre(int t){
+        if(!this.state.equals(DemandeS.ARRIVEE_O)) {
+            this.nbLivrés++;
+            if (nbLivrés >= quantite) {
+                setState(DemandeS.ARRIVEE_O,t);
+            }
+        }
+    }
+
+    public int getNbLivrés() {
+        return nbLivrés;
     }
 }

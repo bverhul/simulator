@@ -43,6 +43,10 @@ public class ArriveeContainer extends Event {
         this.terminal = terminal;
     }
 
+    public void arrivee(){
+        liste.forEach(terminal::ajouterContainer);
+    }
+
     @Override
     public String toString() {
         final StringBuilder sb = new StringBuilder("ArriveeContainer{");

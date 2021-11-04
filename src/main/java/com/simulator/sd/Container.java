@@ -15,8 +15,10 @@ public class Container {
   Service contenaire_service;
  Terminal terminal_depard;
  Terminal terminal_destination;
+
+ private Demande demande;
  
- public Container(boolean plein, double poid_vide_container, ContainerS status) {
+ public Container(boolean plein, double poid_vide_container, ContainerS status, Demande demande) {
 		super();
 		this.IdContainer = IdContainer++;
 		this.plein = plein;
@@ -24,6 +26,7 @@ public class Container {
 		this.position_ContnairT = null;
 		this.containerService = status.CHARGEMENT_DECHARGEMENT;		
 		this.position_containerL=null;
+		this.demande = demande;
 	}
 
 public boolean isPlein() {
@@ -102,7 +105,11 @@ public void setIdContainer(int idContainer) {
 	this.IdContainer = idContainer;
 }
 
+	public Demande getDemande() {
+		return demande;
+	}
 
- 
- 
+	public void setDemande(Demande demande) {
+		this.demande = demande;
+	}
 }

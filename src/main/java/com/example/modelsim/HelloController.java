@@ -29,7 +29,7 @@ public class HelloController {
 
     @FXML private Label t_sim;
     @FXML private StackPane mainPanel;
-    @FXML private Pane pane_barges, pane_terminaux, pane_service;
+    @FXML private Pane pane_barges, pane_terminaux, pane_service,pane_leg,pane_demand;
 
     public HelloController() throws IOException {
         Topologie topologie = TopologyReader.TopologyRead("1_topologie.txt");
@@ -53,6 +53,8 @@ public class HelloController {
         updateBarges();
         updateTerminal();
         updateServices();
+        updateLeg();
+        updateDemand();
     }
 
     @FXML
@@ -64,6 +66,8 @@ public class HelloController {
         updateBarges();
         updateTerminal();
         updateServices();
+        updateLeg();
+        updateDemand();
     }
 
     @FXML
@@ -82,5 +86,13 @@ public class HelloController {
     private void updateServices(){
         // todo
         affPane.updatePaneServices(this.pane_service,this.simulator.getServices().getL_service());
+    }
+    private void updateLeg(){
+        // todo
+        affPane.updatePaneLeg(this.pane_leg,this.simulator.getServices().getL_service().get(0).getList_leg());
+    }
+    private void updateDemand(){
+        // todo
+        affPane.updatePaneDemand(this.pane_demand,this.simulator.getDemandes().getDemandeList());
     }
 }

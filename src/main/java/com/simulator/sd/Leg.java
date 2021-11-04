@@ -27,7 +27,7 @@ public class Leg {
         sb.append('}');
         return sb.toString();
     }
-    ArrayList<Barge> ajouetrBarge(Barge b)
+    public ArrayList<Barge> ajouterBarge(Barge b)
      {
     	
     	for(Barge barge : lesBarges)
@@ -38,15 +38,12 @@ public class Leg {
     	
     	return lesBarges;
     }
-   ArrayList <Barge> enleverBarge(Barge b)
-    {
-   	
-   	for(Barge barge : lesBarges)
-	     {
-	    	if(barge.IdBarge== b.IdBarge) lesBarges.remove(b);
-	     }
-   		
-   	
-   	return lesBarges;
+   public ArrayList<Barge> enleverBarge(Barge b) {
+        lesBarges.remove(b);
+        return lesBarges;
    }
+
+    public ArrayList<Barge> getLesBarges() {
+        return lesBarges;
+    }
 }

@@ -1,8 +1,7 @@
 package com.example.modelsim.panes;
 
-import com.simulator.sd.Barge;
-import com.simulator.sd.Service;
-import com.simulator.sd.Terminal;
+import com.simulator.sd.*;
+import com.simulator.state.DemandeS;
 import com.simulator.state.ServiceS;
 import com.simulator.state.TerminalS;
 import javafx.scene.layout.Pane;
@@ -49,6 +48,32 @@ public class AffPane {
 
             if(service.getEtat_service().equals(ServiceS.FERME))lineInfo.setColorBackground(Color.RED);
             else lineInfo.setColorBackground(Color.LIGHTBLUE);
+
+            pane.getChildren().addAll(lineInfo.getNodes());
+            y += LineInfo.HEIGHT + 10;
+        }
+    }
+
+    public void updatePaneLeg(Pane pane, List<Leg> list_leg){
+        int y = 0;
+        for(Leg leg : list_leg) {
+            LineInfo lineInfo = new LineInfo(0,y);
+            lineInfo.setFirstLine(leg.nameLeg+" - ");
+            lineInfo.setSecondLine(leg.getLesBarges().size()+" barges");
+
+            pane.getChildren().addAll(lineInfo.getNodes());
+            y += LineInfo.HEIGHT + 10;
+        }
+    }
+
+    public void updatePaneDemand(Pane pane, List<Demande> list_demand){
+        int y = 0;
+        for(Demande demande : list_demand) {
+            LineInfo lineInfo = new LineInfo(0,y);
+            lineInfo.setFirstLine(demande.depart.getName()+" -> "+demande.arrivee.getName());
+            lineInfo.setSecondLine(demande.quantite+" containers dont "+demande.getNbLivrés()+" livrés");
+
+            if(demande.state.equals(DemandeS.ARRIVEE_O))lineInfo.setColorBackground(Color.LIGHTGREEN);
 
             pane.getChildren().addAll(lineInfo.getNodes());
             y += LineInfo.HEIGHT + 10;

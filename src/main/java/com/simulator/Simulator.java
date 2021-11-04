@@ -1,10 +1,7 @@
 package com.simulator;
 
 import com.simulator.events.Event;
-import com.simulator.events.moves.ArriveeContainer;
-import com.simulator.events.moves.InsertionBarge;
-import com.simulator.events.moves.LoadUnload;
-import com.simulator.events.moves.MoveBarge;
+import com.simulator.events.moves.*;
 import com.simulator.sd.*;
 import com.simulator.state.BargeS;
 import com.simulator.state.ContainerS;
@@ -39,7 +36,7 @@ public class Simulator {
         /* création des conteneurs */
         for(int i = 0 ; i < nbConteneurs ; i++){
             // todo : vide ou rempli, mis à défaut avec vrai, poid_vide_containers
-            Container c = new Container(true,2d, ContainerS.EN_ATTENTE);
+            Container c = new Container(true,2d, ContainerS.EN_ATTENTE,demande);
             c.setTerminal_destination(demande.arrivee);
             c.setTerminal_depard(demande.depart);
             containers.add(c);
@@ -68,8 +65,10 @@ public class Simulator {
         /* ajout du premier chargement */
         this.timeline.addEvent(new LoadUnload(i,true,2,list_leg.get(0).start,bargeOne));
         for(Leg leg : list_leg){
-            this.timeline.addEvent(new MoveBarge(i,leg.start,leg.end,service,bargeOne));
+            //this.timeline.addEvent(new MoveBarge(i,leg.start,leg.end,service,bargeOne));
+            this.timeline.addEvent(new EnterLeg(i,leg.start,leg,service,bargeOne));
             i += leg.duree;/* temps de déplacement dans le leg */
+            this.timeline.addEvent(new LeaveLeg(i,leg.end,leg,service,bargeOne));
             // todo changer par la barge du service
             this.timeline.addEvent(new LoadUnload(i,false,2,leg.end,bargeOne));
             this.timeline.addEvent(new LoadUnload(i,true,2,leg.end,bargeOne));
@@ -100,6 +99,7 @@ public class Simulator {
                 ArriveeContainer arriveeContainer = (ArriveeContainer)e;
                 Logger.getGlobal().info("Arrivée de containers dans le simulateur");
                 Logger.getGlobal().info(arriveeContainer.toString());
+                arriveeContainer.arrivee();
                 // todo : programmer le prochain évènement
             } else if (e instanceof InsertionBarge) {
                 InsertionBarge insertionBarge = (InsertionBarge)e;
@@ -107,7 +107,19 @@ public class Simulator {
                 Logger.getGlobal().info(insertionBarge.toString());
                 insertionBarge.insert();
                 // todo : programmer le prochain évènement
-            } else {
+            } else if (e instanceof EnterLeg) {
+                EnterLeg enterLeg = (EnterLeg)e;
+                Logger.getGlobal().info("Entrée dans un leg");
+                Logger.getGlobal().info(enterLeg.toString());
+                enterLeg.move();
+                // todo : programmer le prochain évènement
+            }else if (e instanceof LeaveLeg) {
+                LeaveLeg leaveLeg = (LeaveLeg)e;
+                Logger.getGlobal().info("Quitter un leg");
+                Logger.getGlobal().info(leaveLeg.toString());
+                leaveLeg.move();
+                // todo : programmer le prochain évènement
+            }else {
                 Logger.getGlobal().warning("Evènement non reconnu !");
             }
             // todo : effectuer le prochain traitement

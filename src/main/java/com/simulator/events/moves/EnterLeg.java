@@ -1,0 +1,41 @@
+package com.simulator.events.moves;
+
+import com.simulator.events.Event;
+import com.simulator.sd.Barge;
+import com.simulator.sd.Leg;
+import com.simulator.sd.Service;
+import com.simulator.sd.Terminal;
+import com.simulator.state.BargeS;
+
+public class EnterLeg extends Event {
+    private Terminal depart;
+    private Leg leg;
+    private Service service;
+    private Barge barge;
+
+    public EnterLeg(int t, Terminal depart, Leg leg, Service service, Barge barge) {
+        super(t);
+        this.depart = depart;
+        this.leg = leg;
+        this.service = service;
+        this.barge = barge;
+    }
+
+    public void move(){
+        // todo
+        this.barge.setEtat_barge(BargeS.EN_TRANSPORT);
+        this.depart.enleverBarge(barge);
+        this.leg.ajouterBarge(barge);
+    }
+
+    @Override
+    public String toString() {
+        final StringBuilder sb = new StringBuilder("EnterLeg{");
+        sb.append("depart=").append(depart);
+        sb.append(", leg=").append(leg);
+        sb.append(", service=").append(service);
+        sb.append(", barge=").append(barge);
+        sb.append('}');
+        return sb.toString();
+    }
+}

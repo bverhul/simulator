@@ -59,7 +59,11 @@ public class LoadUnload extends Event {
                 container.setContainerService(ContainerS.CHARGEMENT_DECHARGEMENT);
             });
             new_list_barge.removeAll(containerList);
-
+            /* on compte les containers arrivés à destination */
+            List<Container> arriveesADest = terminal.lesContainersSurTerminal.stream().filter(c->c.getTerminal_destination().equals(terminal)).collect(Collectors.toList());
+            arriveesADest.forEach(c->c.getDemande().addLivre(this.getT()));
+            /* on retire les containers arrivés à destination */
+            terminal.lesContainersSurTerminal.removeAll(arriveesADest);
         }
         barge.setLesContainers(new_list_barge);
     }
