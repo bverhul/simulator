@@ -4,12 +4,15 @@ public class Leg {
     public Terminal start,end;
     public String name;
     public int duree;
+    public double distance_start_end;
+    Barge []lesBarges;
 
     public Leg(Terminal start, Terminal end, String name, int duree) {
         this.start = start;
         this.end = end;
         this.name = name;
         this.duree = duree;
+        lesBarges = null;
     }
 
     @Override
@@ -22,4 +25,26 @@ public class Leg {
         sb.append('}');
         return sb.toString();
     }
+    Barge [] ajouetrBarge(Barge b)
+     {
+    	int taille_tab=0;
+    	for(int i =0 ;i <= lesBarges.length;i++)
+	     {
+	    	if(lesBarges[i].IdBarge== b.IdBarge) taille_tab=i;
+	     }
+    		lesBarges[taille_tab +1] = b;
+    	
+    	return lesBarges;
+    }
+    Barge [] enleverBarge(Barge b)
+    {
+   	int taille_tab=0;
+   	for(int i =0 ;i <= lesBarges.length;i++)
+	     {
+	    	if(lesBarges[i].IdBarge== b.IdBarge) ;
+	     }
+   		
+   	
+   	return lesBarges;
+   }
 }

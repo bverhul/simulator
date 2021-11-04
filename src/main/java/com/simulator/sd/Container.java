@@ -3,8 +3,9 @@ package com.simulator.sd;
 import com.simulator.state.ContainerS;
 
 public class Container {
- 
-boolean plein;
+ int IdContainer;
+ static int   idContenaire = 0;
+ boolean plein;
  double poid_vide_container;
  final int poids_container_max = 10000000;
  Integer  position_ContnairT;
@@ -17,6 +18,7 @@ boolean plein;
  
  public Container(boolean plein, double poid_vide_container, ContainerS status) {
 		super();
+		this.IdContainer = IdContainer++;
 		this.plein = plein;
 		this.poid_vide_container = poid_vide_container;
 		this.position_ContnairT = null;
@@ -90,6 +92,14 @@ public void setTerminal_destination(Terminal terminal_destination) {
 
 public int getPoids_container_max() {
 	return poids_container_max;
+}
+
+public int getIdContainer() {
+	return IdContainer;
+}
+
+public void setIdContainer(int idContainer) {
+	this.IdContainer = idContainer;
 }
 
 

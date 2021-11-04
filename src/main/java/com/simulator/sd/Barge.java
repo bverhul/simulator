@@ -5,14 +5,19 @@ import java.util.List;
 import com.simulator.state.BargeS;
 
 public class Barge {
+	int IdBarge;
+	static int id =0;
 	BargeS etat_barge;
 	int positionTerminal;
 	Leg position_sur_leg;
+	double vitesseBarge;
 	List<Container>lesContainers;
-	public Barge(BargeS etat_barge, int position) {
+	public Barge(BargeS etat_barge, int position,double v) {
 		super();
+		this.IdBarge =id++;
 		this.etat_barge = etat_barge;
 		this.positionTerminal = position;
+		this.vitesseBarge=v;
 	}
 	
 	
