@@ -35,15 +35,18 @@ public class LoadUnload extends Event {
 
     /**
      * Permet de transférer les conteneurs
-     * @return
      */
     public void transfert(){
+        List<Container> containerList;
         if(isLoading){
+            /* chargement */
+            /* récupère les élements à charger */
 
+            /* envoie les éléments pour chargement */
         }else{
             /* déchargement */
             /* récupère les élements à charger */
-            List<Container> containerList;
+
             /* envoie les éléments pour chargement */
         }
 
