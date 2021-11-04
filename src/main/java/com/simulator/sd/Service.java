@@ -20,6 +20,7 @@ public class Service {
     private Map<Terminal,Integer> t_debut_stops,t_fin_stops;
     private List<Leg> list_leg;
     private List<Terminal> list_terminals;
+   
     ServiceS etat_service;
     public Service(int id, Terminal depart, Terminal arrivee, int t_debut_charg, int t_fin_charg, int t_premier_leg, int t_dest, Map<Terminal, Integer> t_debut_stops, Map<Terminal, Integer> t_fin_stops, List<Leg> list_leg, ServiceS s) {
         this.id = id;
