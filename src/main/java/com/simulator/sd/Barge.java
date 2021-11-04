@@ -53,4 +53,17 @@ public class Barge {
 	public void setLesContainers(List<Container> lesContainers) {
 		this.lesContainers = lesContainers;
 	}
+
+	@Override
+	public String toString() {
+		final StringBuilder sb = new StringBuilder("Barge{");
+		sb.append("IdBarge=").append(IdBarge);
+		sb.append(", etat_barge=").append(etat_barge);
+		sb.append(", positionTerminal=").append(positionTerminal);
+		sb.append(", position_sur_leg=").append(position_sur_leg);
+		sb.append(", vitesseBarge=").append(vitesseBarge);
+		sb.append(", lesContainers=").append(lesContainers);
+		sb.append('}');
+		return sb.toString();
+	}
 }

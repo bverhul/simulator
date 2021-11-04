@@ -92,14 +92,7 @@ public class Terminal {
    }
   public ArrayList<Barge> enleverBarge(Barge b)
   {
-	   for(Barge barge:lesbargesSurTerminal)
-  	{
-  		if(barge.IdBarge == b.IdBarge)
-  		{
-  			lesbargesSurTerminal.remove(b);
-  		}
-
-  	}
-	   return lesbargesSurTerminal;
+      lesbargesSurTerminal.remove(b);
+      return lesbargesSurTerminal;
   }
 }

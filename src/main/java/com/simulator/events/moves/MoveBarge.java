@@ -1,8 +1,10 @@
 package com.simulator.events.moves;
 
 import com.simulator.events.Event;
+import com.simulator.sd.Barge;
 import com.simulator.sd.Service;
 import com.simulator.sd.Terminal;
+import com.simulator.state.BargeS;
 
 // todo
 
@@ -12,12 +14,21 @@ import com.simulator.sd.Terminal;
 public class MoveBarge extends Event {
     private Terminal depart,arrivee;
     private Service service;
+    private Barge barge;
 
-    public MoveBarge(int t, Terminal depart, Terminal arrivee, Service service) {
+    public MoveBarge(int t, Terminal depart, Terminal arrivee, Service service, Barge barge) {
         super(t);
         this.depart = depart;
         this.arrivee = arrivee;
         this.service = service;
+        this.barge = barge;
+    }
+
+    public void move(){
+        // todo
+        this.barge.setEtat_barge(BargeS.EN_TRANSPORT);
+        this.depart.enleverBarge(barge);
+        this.arrivee.ajouterBarge(barge);
     }
 
     @Override
@@ -26,6 +37,7 @@ public class MoveBarge extends Event {
         sb.append("depart=").append(depart);
         sb.append(", arrivee=").append(arrivee);
         sb.append(", service=").append(service);
+        sb.append(", barge=").append(barge);
         sb.append('}');
         return sb.toString();
     }

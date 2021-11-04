@@ -68,7 +68,7 @@ public class Simulator {
         /* ajout du premier chargement */
         this.timeline.addEvent(new LoadUnload(i,true,2,list_leg.get(0).start,bargeOne));
         for(Leg leg : list_leg){
-            this.timeline.addEvent(new MoveBarge(i,leg.start,leg.end,service));
+            this.timeline.addEvent(new MoveBarge(i,leg.start,leg.end,service,bargeOne));
             i += leg.duree;/* temps de déplacement dans le leg */
             // todo changer par la barge du service
             this.timeline.addEvent(new LoadUnload(i,false,2,leg.end,bargeOne));
@@ -88,6 +88,7 @@ public class Simulator {
                 MoveBarge moveBarge = (MoveBarge)e;
                 Logger.getGlobal().info("Déplacement de barge");
                 Logger.getGlobal().info(moveBarge.toString());
+                moveBarge.move();
                 /* todo : gérer le déplacement de barge */
             } else if (e instanceof LoadUnload) {
                 LoadUnload loadUnload = (LoadUnload)e;
