@@ -46,8 +46,8 @@ public class LoadUnload extends Event {
             /* récupère les élements à charger */
             // todo : adapter pour prendre les containers les plus appropriés
             containerList = terminal.lesContainersSurTerminal;
-            terminal.lesContainersSurTerminal.clear();
             new_list_barge.addAll(containerList);
+            terminal.lesContainersSurTerminal.removeAll(containerList);
             /* envoie les éléments pour chargement */
         }else{
             /* déchargement */

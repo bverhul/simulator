@@ -70,6 +70,15 @@
                   </AnchorPane>
                </content>
             </Tab>
+            <Tab text="Services">
+               <content>
+                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <Pane fx:id="pane_service" layoutX="134.0" layoutY="39.0" prefHeight="490.0" prefWidth="632.0" />
+                     </children>
+                  </AnchorPane>
+               </content>
+            </Tab>
          </tabs>
       </TabPane>
     <HBox id="HBox" alignment="CENTER_LEFT" spacing="5.0" VBox.vgrow="NEVER">

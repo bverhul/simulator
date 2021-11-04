@@ -1,6 +1,7 @@
 package com.simulator.io;
 
 import com.simulator.sd.*;
+import com.simulator.state.BargeS;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -55,13 +56,17 @@ public class ServiceReader {
                     if(!optn_sommet.isPresent())throw new NullPointerException();
                     map_stops_stop.put(optn_sommet.get(),Integer.parseInt(args2[1]));
                 });
-                /* --- */
+                /* --- barges --- */
                 /* todo : récupérer les autres champs */
+                /* par défaut, une barge */
+                List<Barge> bargeList = new ArrayList<>();bargeList.add(new Barge(BargeS.EN_ATTENTE,1,5d));
+
+                /* ajout du service */
                 services.addService(new Service(
                         Integer.parseInt(args[0]), optn_depart_s.get(), optn_arrivee_s.get(),
                         Integer.parseInt(args[6]),Integer.parseInt(args[7]),Integer.parseInt(args[8]),
                         Integer.parseInt(args[9]),
-                        map_stops_start,map_stops_stop,list_leg
+                        map_stops_start,map_stops_stop,list_leg,bargeList
                 ));
                 line = bufReader.readLine();
             }
