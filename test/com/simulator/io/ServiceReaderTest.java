@@ -29,12 +29,12 @@ class ServiceReaderTest {
         assertEquals(1,leg1.duree);
         assertEquals(topologie.terminals.get(0),leg1.start);
         assertEquals(topologie.terminals.get(1),leg1.end);
-        assertEquals("l1",leg1.name);
+        assertEquals("l1",leg1.nameLeg);
         Leg leg2 = l_leg.get(1);
         assertEquals(1,leg2.duree);
         assertEquals(topologie.terminals.get(1),leg2.start);
         assertEquals(topologie.terminals.get(2),leg2.end);
-        assertEquals("l2",leg2.name);
+        assertEquals("l2",leg2.nameLeg);
         // todo : vérifications des autres champs moins sensibles
         System.out.println("Service = "+s);
     }
