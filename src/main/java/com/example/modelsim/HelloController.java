@@ -36,7 +36,8 @@ public class HelloController {
         Services services = ServiceReader.ServicesRead("1_services.txt",topologie);
         Demandes demandes = DemandeReader.DemandeRead("1_demandes.txt",topologie.terminals);
         this.simulator = new Simulator(topologie, demandes,services);
-
+        Logger.getGlobal().info("Services : "+services.toString());
+        Logger.getGlobal().info("Demandes : "+demandes.toString());
         SmartPlacementStrategy strategy = new SmartCircularSortedPlacementStrategy();
         this.graphView = new SmartGraphPanel<>(topologie.getGraphUI(), strategy);
         this.graphView.setAutomaticLayout(false);
