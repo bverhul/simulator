@@ -1,18 +1,20 @@
 package com.simulator.sd;
 
+import java.util.ArrayList;
+
 public class Leg {
     public Terminal start,end;
-    public String name;
+    public String nameLeg;
     public int duree;
     public double distance_start_end;
-    Barge []lesBarges;
+    ArrayList<Barge>lesBarges;
 
     public Leg(Terminal start, Terminal end, String name, int duree) {
         this.start = start;
         this.end = end;
-        this.name = name;
+        this.nameLeg = name;
         this.duree = duree;
-        lesBarges = null;
+        lesBarges = new ArrayList<Barge>();
     }
 
     @Override
@@ -20,28 +22,28 @@ public class Leg {
         final StringBuilder sb = new StringBuilder("Leg{");
         sb.append("start=").append(start);
         sb.append(", end=").append(end);
-        sb.append(", name='").append(name).append('\'');
+        sb.append(", name='").append(nameLeg).append('\'');
         sb.append(", duree=").append(duree);
         sb.append('}');
         return sb.toString();
     }
-    Barge [] ajouetrBarge(Barge b)
+    ArrayList<Barge> ajouetrBarge(Barge b)
      {
-    	int taille_tab=0;
-    	for(int i =0 ;i <= lesBarges.length;i++)
+    	
+    	for(Barge barge : lesBarges)
 	     {
-	    	if(lesBarges[i].IdBarge== b.IdBarge) taille_tab=i;
+	    	if(barge.IdBarge== b.IdBarge);
 	     }
-    		lesBarges[taille_tab +1] = b;
+    		lesBarges.add(b);
     	
     	return lesBarges;
     }
-    Barge [] enleverBarge(Barge b)
+   ArrayList <Barge> enleverBarge(Barge b)
     {
-   	int taille_tab=0;
-   	for(int i =0 ;i <= lesBarges.length;i++)
+   	
+   	for(Barge barge : lesBarges)
 	     {
-	    	if(lesBarges[i].IdBarge== b.IdBarge) ;
+	    	if(barge.IdBarge== b.IdBarge) lesBarges.remove(b);
 	     }
    		
    	

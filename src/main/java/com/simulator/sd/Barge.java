@@ -19,8 +19,8 @@ public class Barge {
 		this.positionTerminal = position;
 		this.vitesseBarge=v;
 	}
-	
-	
+
+
 	public BargeS getEtat_barge() {
 		return etat_barge;
 	}
@@ -31,7 +31,7 @@ public class Barge {
 		return positionTerminal;
 	}
 	public void setPosition(int position) {
-		
+
 		this.positionTerminal = position;
 	}
 	int  localiserBarge_sur_Terminal()
@@ -42,5 +42,13 @@ public class Barge {
 	Leg localisation_sur_Leg()
 	{
 		return position_sur_leg;
+	}
+
+	public List<Container> getLesContainers() {
+		return lesContainers;
+	}
+
+	public void setLesContainers(List<Container> lesContainers) {
+		this.lesContainers = lesContainers;
 	}
 }

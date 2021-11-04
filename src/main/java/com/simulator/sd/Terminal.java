@@ -13,9 +13,10 @@ public class Terminal {
     private int max_services, max_barges;/* todo : adapter avec des terminaux à capacités finies */
 
     private TerminalS state;
-    ArrayList<Barge>lesbargesSurTerminal;
-    ArrayList<Container>lesContainersSurTerminal;
     //ajouter des liste des barge;
+    public ArrayList<Barge>lesbargesSurTerminal;
+    public ArrayList<Container>lesContainersSurTerminal;
+
     public Terminal(String name) {
         this.name = name;
         this.id = nb_sommets;
@@ -23,7 +24,8 @@ public class Terminal {
         this.max_barges = Integer.MAX_VALUE;
         this.max_services = Integer.MAX_VALUE;
         this.state = TerminalS.DEFAULT;
-        
+        lesbargesSurTerminal=new ArrayList<Barge>();
+        lesContainersSurTerminal =new ArrayList<Container>();
     }
 
     @Override
@@ -56,17 +58,17 @@ public class Terminal {
         this.state = state;
         return true;
     }
-   ArrayList<Container> ajouterContainer(Container c)
+   public ArrayList<Container> ajouterContainer(Container c)
     {
     	for(Container container: lesContainersSurTerminal)
     	{
     		if(container.getIdContainer() == c.getIdContainer());
-    		
+
     	}
     	lesContainersSurTerminal.add(c);
     	return lesContainersSurTerminal;
     }
-   ArrayList<Container> enleverContainer(Container c)
+   public ArrayList<Container> enleverContainer(Container c)
    {
 	   for(Container container: lesContainersSurTerminal)
    	{
@@ -74,21 +76,21 @@ public class Terminal {
    		{
    			lesContainersSurTerminal.remove(c);
    		}
-   		
+
    	}
 	   return lesContainersSurTerminal;
    }
-   ArrayList<Barge> ajouterBarge(Barge b)
+   public ArrayList<Barge> ajouterBarge(Barge b)
    {
    	for(Barge barge: lesbargesSurTerminal)
    	{
    		if(barge.IdBarge == b.IdBarge);
-   		
+
    	}
    	lesbargesSurTerminal.add(b);
    	return lesbargesSurTerminal;
    }
-  ArrayList<Barge> enleverBarge(Barge b)
+  public ArrayList<Barge> enleverBarge(Barge b)
   {
 	   for(Barge barge:lesbargesSurTerminal)
   	{
@@ -96,7 +98,7 @@ public class Terminal {
   		{
   			lesbargesSurTerminal.remove(b);
   		}
-  		
+
   	}
 	   return lesbargesSurTerminal;
   }

@@ -10,9 +10,9 @@ public class Container {
  final int poids_container_max = 10000000;
  Integer  position_ContnairT;
  Leg position_containerL;
+//private ContainerService status;
  ContainerS containerService;
- //private ContainerService status;
- Service contenaire_service;
+  Service contenaire_service;
  Terminal terminal_depard;
  Terminal terminal_destination;
  

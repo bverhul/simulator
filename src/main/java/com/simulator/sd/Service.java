@@ -1,5 +1,8 @@
 package com.simulator.sd;
 
+import com.simulator.state.ServiceS;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -16,8 +19,9 @@ public class Service {
     private int t_dest;
     private Map<Terminal,Integer> t_debut_stops,t_fin_stops;
     private List<Leg> list_leg;
-
-    public Service(int id, Terminal depart, Terminal arrivee, int t_debut_charg, int t_fin_charg, int t_premier_leg, int t_dest, Map<Terminal, Integer> t_debut_stops, Map<Terminal, Integer> t_fin_stops, List<Leg> list_leg) {
+    private List<Terminal> list_terminals;
+    ServiceS etat_service;
+    public Service(int id, Terminal depart, Terminal arrivee, int t_debut_charg, int t_fin_charg, int t_premier_leg, int t_dest, Map<Terminal, Integer> t_debut_stops, Map<Terminal, Integer> t_fin_stops, List<Leg> list_leg, ServiceS s) {
         this.id = id;
         this.depart = depart;
         this.arrivee = arrivee;
@@ -28,6 +32,9 @@ public class Service {
         this.t_fin_stops = t_fin_stops;
         this.t_dest = t_dest;
         this.list_leg = list_leg;
+        this.etat_service = s.OUVERT;
+        list_terminals = new ArrayList<Terminal>();
+        list_leg =new ArrayList<Leg>();
     }
 
     public int getId() {
@@ -77,4 +84,26 @@ public class Service {
         sb.append('}');
         return sb.toString();
     }
+
+	public ServiceS getEtat_service() {
+		return etat_service;
+	}
+
+	public void setEtat_service(ServiceS etat_service) {
+		this.etat_service = etat_service;
+	}
+
+	public List<Terminal> getList_terminals() {
+		return list_terminals;
+	}
+
+	public void setList_terminals(List<Terminal> list_terminals) {
+		this.list_terminals = list_terminals;
+	}
+
+	public void setList_leg(List<Leg> list_leg) {
+		this.list_leg = list_leg;
+	}
+	
+
 }
