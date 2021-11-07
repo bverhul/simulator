@@ -52,7 +52,7 @@
                 </SplitPane>
                </content>
             </Tab>
-            <Tab text="Barges">
+            <Tab closable="false" text="Barges">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -61,7 +61,7 @@
                   </AnchorPane>
               </content>
             </Tab>
-            <Tab text="Terminaux">
+            <Tab closable="false" text="Terminaux">
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -70,7 +70,7 @@
                   </AnchorPane>
                </content>
             </Tab>
-            <Tab text="Services">
+            <Tab closable="false" text="Services">
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -79,7 +79,7 @@
                   </AnchorPane>
                </content>
             </Tab>
-            <Tab text="Leg">
+            <Tab closable="false" text="Leg">
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
@@ -88,7 +88,7 @@
                   </AnchorPane>
                </content>
             </Tab>
-            <Tab text="Demandes">
+            <Tab closable="false" text="Demandes">
                <content>
                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
