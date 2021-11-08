@@ -23,12 +23,12 @@
  */
 package com.brunomnsilva.smartgraph.graphview;
 
+import com.brunomnsilva.smartgraph.graph.Edge;
 import javafx.beans.value.ObservableValue;
 import javafx.geometry.Point2D;
 import javafx.scene.shape.CubicCurve;
 import javafx.scene.transform.Rotate;
 import javafx.scene.transform.Translate;
-import com.brunomnsilva.smartgraph.graph.Edge;
 
 /**
  * Concrete implementation of a curved edge.

@@ -1,9 +1,9 @@
 package com.simulator.sd;
 
+import com.simulator.state.BargeS;
+
 import java.util.ArrayList;
 import java.util.List;
-
-import com.simulator.state.BargeS;
 
 public class Barge {
 	int IdBarge;
@@ -13,13 +13,16 @@ public class Barge {
 	Leg position_sur_leg;
 	double vitesseBarge;
 	List<Container>lesContainers;
-	public Barge(BargeS etat_barge, int position,double v) {
+
+	private Terminal positionTerminal_;
+	public Barge(BargeS etat_barge, int position,double v, Terminal terminal) {
 		super();
 		this.IdBarge =id++;
 		this.etat_barge = etat_barge;
 		this.positionTerminal = position;
 		this.vitesseBarge=v;
 		this.lesContainers = new ArrayList<>();
+		this.positionTerminal_ = terminal;
 	}
 
 
@@ -36,6 +39,15 @@ public class Barge {
 
 		this.positionTerminal = position;
 	}
+
+	public Terminal getPositionTerminal() {
+		return positionTerminal_;
+	}
+
+	public void setPositionTerminal(Terminal positionTerminal_) {
+		this.positionTerminal_ = positionTerminal_;
+	}
+
 	int  localiserBarge_sur_Terminal()
 	{
 		this.positionTerminal = (Integer) null;

@@ -23,13 +23,10 @@
  */
 package com.brunomnsilva.smartgraph.graphview;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Comparator;
-import java.util.List;
-import javafx.geometry.Point2D;
 import com.brunomnsilva.smartgraph.graph.Graph;
+import javafx.geometry.Point2D;
+
+import java.util.*;
 
 /**
  * Places vertices around a circle, ordered by the underlying

@@ -23,14 +23,15 @@
  */
 package com.brunomnsilva.smartgraph.graphview;
 
-import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
+import com.brunomnsilva.smartgraph.graph.Vertex;
 import javafx.geometry.Point2D;
 import javafx.scene.Cursor;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Circle;
-import com.brunomnsilva.smartgraph.graph.Vertex;
+
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
 
 /**
  * Internal implementation of a graph vertex for the {@link SmartGraphPanel}

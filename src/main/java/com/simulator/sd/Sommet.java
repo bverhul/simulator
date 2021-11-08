@@ -1,7 +1,5 @@
 package com.simulator.sd;
 
-import com.simulator.state.ServiceS;
-
 public class Sommet {
     private int id;
     private static int nb_sommets;

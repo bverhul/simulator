@@ -23,8 +23,9 @@
  */
 package com.brunomnsilva.smartgraph.graphview;
 
-import java.util.Collection;
 import com.brunomnsilva.smartgraph.graph.Graph;
+
+import java.util.Collection;
 
 /**
  * Contains the method that should be implemented when creating new vertex placement

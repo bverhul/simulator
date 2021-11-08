@@ -3,7 +3,6 @@ package com.simulator;
 import com.simulator.events.Event;
 import com.simulator.events.moves.*;
 import com.simulator.sd.*;
-import com.simulator.state.BargeS;
 import com.simulator.state.ContainerS;
 import com.simulator.state.DemandeS;
 

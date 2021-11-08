@@ -1,9 +1,10 @@
 package com.brunomnsilva.smartgraph.graphview;
 
-import java.util.List;
 import javafx.geometry.Point2D;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+
+import java.util.List;
 
 /**
  * Utility methods for JavaFX.

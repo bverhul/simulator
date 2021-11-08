@@ -2,7 +2,10 @@ package com.simulator.sd;
 
 import com.simulator.events.Event;
 
-import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.SortedMap;
+import java.util.TreeMap;
 
 /**
  * Gére l'ordonnacement des évènements

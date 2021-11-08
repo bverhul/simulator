@@ -10,9 +10,12 @@ public class Topologie {
     public int[][] graphe;
     public List<Terminal> terminals;
 
+    private Graph<String, String> g;
+
     public Topologie(List<Terminal> liste){
         this.graphe = new int[liste.size()][liste.size()];
         this.terminals = liste;
+        this.g = null;
     }
 
     public boolean canMove(Terminal a, Terminal b){
@@ -48,7 +51,11 @@ public class Topologie {
      * @return
      */
     public Graph<String,String> getGraphUI(){
-        Graph<String, String> g = new GraphEdgeList<>();
+        if(g==null)generateGraphUI();
+        return g;
+    }
+    private void generateGraphUI(){
+        this.g = new GraphEdgeList<>();
         terminals.forEach(sommet -> g.insertVertex(sommet.getName()));
         int nb_edge = 1;
         for(int i = 0 ; i < graphe.length ; i++){
@@ -59,6 +66,5 @@ public class Topologie {
                 }
             }
         }
-        return g;
     }
 }

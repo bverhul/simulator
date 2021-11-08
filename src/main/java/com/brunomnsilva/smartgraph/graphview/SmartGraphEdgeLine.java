@@ -23,10 +23,10 @@
  */
 package com.brunomnsilva.smartgraph.graphview;
 
+import com.brunomnsilva.smartgraph.graph.Edge;
 import javafx.scene.shape.Line;
 import javafx.scene.transform.Rotate;
 import javafx.scene.transform.Translate;
-import com.brunomnsilva.smartgraph.graph.Edge;
 
 
 /**

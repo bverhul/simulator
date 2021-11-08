@@ -23,9 +23,10 @@
  */
 package com.brunomnsilva.smartgraph.graphview;
 
-import static javafx.beans.binding.Bindings.createDoubleBinding;
 import javafx.beans.binding.DoubleBinding;
 import javafx.beans.value.ObservableDoubleValue;
+
+import static javafx.beans.binding.Bindings.createDoubleBinding;
 
 /**
  * Some {@link Math} operations implemented as bindings.

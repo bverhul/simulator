@@ -23,11 +23,7 @@
  */
 package com.brunomnsilva.smartgraph.graph;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * ADT Graph implementation that stores a collection of edges (and vertices) and

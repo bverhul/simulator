@@ -59,7 +59,7 @@ public class ServiceReader {
                 /* --- barges --- */
                 /* todo : récupérer les autres champs */
                 /* par défaut, une barge */
-                List<Barge> bargeList = new ArrayList<>();bargeList.add(new Barge(BargeS.EN_ATTENTE,1,5d));
+                List<Barge> bargeList = new ArrayList<>();bargeList.add(new Barge(BargeS.EN_ATTENTE,1,5d,topologie.terminals.get(0)));
 
                 /* ajout du service */
                 services.addService(new Service(
