@@ -23,9 +23,10 @@
  */
 package com.brunomnsilva.smartgraph.graphview;
 
+import com.brunomnsilva.smartgraph.graph.Graph;
+
 import java.util.Collection;
 import java.util.Random;
-import com.brunomnsilva.smartgraph.graph.Graph;
 
 /**
  * Scatters the vertices randomly.

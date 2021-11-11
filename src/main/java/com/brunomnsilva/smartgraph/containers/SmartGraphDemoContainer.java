@@ -23,10 +23,10 @@
  */
 package com.brunomnsilva.smartgraph.containers;
 
+import com.brunomnsilva.smartgraph.graphview.SmartGraphPanel;
 import javafx.scene.control.CheckBox;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
-import com.brunomnsilva.smartgraph.graphview.SmartGraphPanel;
 
 /**
  *

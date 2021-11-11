@@ -60,6 +60,8 @@ public class HelloController {
             this.bargeFX.add(bargeFX);
             graphView.getChildren().addAll(bargeFX.getNodes());
         });
+        /* demande une mise à jour de l'affichage des positions des barges */
+        this.simulator.setMvListener(()-> this.bargeFX.forEach(BargeFX::moved));
         /* updates */
         updateBarges();
         updateTerminal();

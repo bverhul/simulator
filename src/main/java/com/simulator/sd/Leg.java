@@ -9,6 +9,8 @@ public class Leg {
     public double distance_start_end;
     ArrayList<Barge>lesBarges;
 
+    private int id;
+
     public Leg(Terminal start, Terminal end, String name, int duree) {
         this.start = start;
         this.end = end;
@@ -45,5 +47,11 @@ public class Leg {
 
     public ArrayList<Barge> getLesBarges() {
         return lesBarges;
+    }
+    public int getId() {
+        return id;
+    }
+    public void setId(int id) {
+        this.id = id;
     }
 }

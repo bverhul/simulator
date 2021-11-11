@@ -2,6 +2,7 @@ package com.simulator;
 
 import com.simulator.events.Event;
 import com.simulator.events.moves.*;
+import com.simulator.listeners.MoveBargeListener;
 import com.simulator.sd.*;
 import com.simulator.state.ContainerS;
 import com.simulator.state.DemandeS;
@@ -14,11 +15,17 @@ public class Simulator {
     private Timeline timeline;
     private Demandes demandes;
     private Services services;
+    /* listeners */
+    /**
+     * Listener appelé à chaque déplacement de barge
+     */
+    private MoveBargeListener mvListener;
 
     public Simulator(Topologie topologie, Demandes demandes, Services services){
         this.topologie = topologie;
         this.services = services;
         this.demandes = demandes;
+        this.mvListener = ()->{};
         initTimeline();
     }
 
@@ -87,6 +94,7 @@ public class Simulator {
                 Logger.getGlobal().info("Déplacement de barge");
                 Logger.getGlobal().info(moveBarge.toString());
                 moveBarge.move();
+                mvListener.asMoved();
                 /* todo : gérer le déplacement de barge */
             } else if (e instanceof LoadUnload) {
                 LoadUnload loadUnload = (LoadUnload)e;
@@ -105,18 +113,21 @@ public class Simulator {
                 Logger.getGlobal().info("Insertion de barges dans le simulateur");
                 Logger.getGlobal().info(insertionBarge.toString());
                 insertionBarge.insert();
+                mvListener.asMoved();
                 // todo : programmer le prochain évènement
             } else if (e instanceof EnterLeg) {
                 EnterLeg enterLeg = (EnterLeg)e;
                 Logger.getGlobal().info("Entrée dans un leg");
                 Logger.getGlobal().info(enterLeg.toString());
                 enterLeg.move();
+                mvListener.asMoved();
                 // todo : programmer le prochain évènement
             }else if (e instanceof LeaveLeg) {
                 LeaveLeg leaveLeg = (LeaveLeg)e;
                 Logger.getGlobal().info("Quitter un leg");
                 Logger.getGlobal().info(leaveLeg.toString());
                 leaveLeg.move();
+                mvListener.asMoved();
                 // todo : programmer le prochain évènement
             }else {
                 Logger.getGlobal().warning("Evènement non reconnu !");
@@ -145,6 +156,12 @@ public class Simulator {
         this.services.getL_service().forEach(service -> listBarge.addAll(service.getList_barges()));
         return listBarge;
     }
+    public MoveBargeListener getMvListener() {
+        return mvListener;
+    }
+    public void setMvListener(MoveBargeListener mvListener) {
+        this.mvListener = mvListener;
+    }
 
     public boolean addEvent(Event e){
         return timeline.addEvent(e);
@@ -159,4 +176,6 @@ public class Simulator {
         this.demandes.getDemandeList().forEach(d-> map_.put(d,d.state));
         return map_;
     }
+
+
 }

@@ -23,6 +23,7 @@ public class Barge {
 		this.vitesseBarge=v;
 		this.lesContainers = new ArrayList<>();
 		this.positionTerminal_ = terminal;
+		this.position_sur_leg = null;
 	}
 
 
@@ -64,6 +65,14 @@ public class Barge {
 
 	public void setLesContainers(List<Container> lesContainers) {
 		this.lesContainers = lesContainers;
+	}
+
+	public Leg getPosition_sur_leg() {
+		return position_sur_leg;
+	}
+
+	public void setPosition_sur_leg(Leg position_sur_leg) {
+		this.position_sur_leg = position_sur_leg;
 	}
 
 	@Override

@@ -22,10 +22,9 @@ public class LeaveLeg extends Event {
     }
 
     public void move(){
-        // todo
         this.barge.setEtat_barge(BargeS.CHARGEMENT_DECHARGEMENT);
-        this.leg.enleverBarge(barge);
-        this.arrivee.ajouterBarge(barge);
+        this.leg.enleverBarge(barge);this.barge.setPosition_sur_leg(null);
+        this.arrivee.ajouterBarge(barge);this.barge.setPositionTerminal(this.arrivee);
     }
 
     @Override
