@@ -7,8 +7,11 @@ import com.simulator.sd.Barge;
 import com.simulator.sd.Leg;
 import com.simulator.sd.Terminal;
 import com.simulator.sd.Topologie;
+import javafx.animation.PathTransition;
+import javafx.animation.TranslateTransition;
 import javafx.scene.Node;
 import javafx.scene.shape.Rectangle;
+import javafx.util.Duration;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -70,10 +73,9 @@ public class BargeFX {
             /* position */
             double posX = (nodeForBarge.getEndX()+nodeForBarge.getStartX())/2d;
             double posY = (nodeForBarge.getEndY()+nodeForBarge.getStartY())/2d;
-            this.rect.setX(posX - (WIDTH/2d));
-            this.rect.setY(posY - (HEIGHT/2d));
+            double x = posX - (WIDTH/2d), y = posY - (HEIGHT/2d);
+            this.rect.setX(x);this.rect.setY(y);
             /* todo : la rotation */
-            this.rect.setRotate(45d);
         }else{
             /* placer la barge sur terminal */
             SmartGraphVertexNode<String> nodeForBarge = getVertex(this.barge.getPositionTerminal());
