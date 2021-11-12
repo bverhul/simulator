@@ -61,70 +61,80 @@ public class Simulator {
      * Préparer la liste des évènements pour un service
      */
     private void initTimelineSingleService(Service service){
-        int i = 0;
-        List<Leg> list_leg = service.getList_leg();
-        Barge bargeOne = service.getList_barges().get(0);// todo : adapter pour n barges
+        Logger.getGlobal().info("Service : "+service);
         /* entrée des barges dans le système */
         service.getList_barges().forEach(barge -> {
             this.timeline.addEvent(new InsertionBarge(service.getT_debut_charg(),barge,service.getDepart()));
+
+            scheduleEvents(barge,service);
         });
+    }
+
+    /**
+     * Permet d'organiser tous les évènements d'une barge
+     * @param barge
+     * @param service
+     */
+    private void scheduleEvents(Barge barge, Service service){
+        int i = 0;
+        List<Leg> list_leg = service.getList_leg();
         /* ajout du premier chargement */
-        this.timeline.addEvent(new LoadUnload(i,true,2,list_leg.get(0).start,bargeOne));
+        this.timeline.addEvent(new LoadUnload(i,true,2,list_leg.get(0).start,barge));
         for(Leg leg : list_leg){
-            //this.timeline.addEvent(new MoveBarge(i,leg.start,leg.end,service,bargeOne));
-            this.timeline.addEvent(new EnterLeg(i,leg.start,leg,service,bargeOne));
+            this.timeline.addEvent(new EnterLeg(i,leg.start,leg,service,barge));
             i += leg.duree;/* temps de déplacement dans le leg */
-            this.timeline.addEvent(new LeaveLeg(i,leg.end,leg,service,bargeOne));
-            // todo changer par la barge du service
-            this.timeline.addEvent(new LoadUnload(i,false,2,leg.end,bargeOne));
-            this.timeline.addEvent(new LoadUnload(i,true,2,leg.end,bargeOne));
-            /* todo : event de pause */
-            // todo :  voir pour ajouter les pauses
+            this.timeline.addEvent(new LeaveLeg(i,leg.end,leg,service,barge));
+
+            if(service.getT_debut_stops().get(leg.end) != null) {
+                this.timeline.addEvent(new LoadUnload(service.getT_debut_stops().get(leg.end), false, 2, leg.end, barge));
+                this.timeline.addEvent(new LoadUnload(service.getT_fin_stops().get(leg.end), true, 2, leg.end, barge));
+                i = service.getT_fin_stops().get(leg.end);
+            }
         }
     }
 
-    public void moveNextStep(){
+    public String moveNextStep(){
+        String name = "";
         Event e = this.timeline.getNextEvent();
         if(e == null){
             /* fin de simulation */
             Logger.getGlobal().info("Fin de simulation");
+            name = "Fin de simulation";
         }else {
-            if (e instanceof MoveBarge) {
-                MoveBarge moveBarge = (MoveBarge)e;
-                Logger.getGlobal().info("Déplacement de barge");
-                Logger.getGlobal().info(moveBarge.toString());
-                moveBarge.move();
-                mvListener.asMoved();
-                /* todo : gérer le déplacement de barge */
-            } else if (e instanceof LoadUnload) {
+            if (e instanceof LoadUnload) {
                 LoadUnload loadUnload = (LoadUnload)e;
-                Logger.getGlobal().info("Chargement/Déchargement");
+                name = "Chargement/Déchargement";
+                Logger.getGlobal().info(name);
                 Logger.getGlobal().info(loadUnload.toString());
                 loadUnload.transfert();
                 // todo : programmer le prochain évènement
             }else if (e instanceof ArriveeContainer) {
                 ArriveeContainer arriveeContainer = (ArriveeContainer)e;
-                Logger.getGlobal().info("Arrivée de containers dans le simulateur");
+                name = "Arrivée de "+ arriveeContainer.getListe().size() +" containers dans le simulateur";
+                Logger.getGlobal().info(name);
                 Logger.getGlobal().info(arriveeContainer.toString());
                 arriveeContainer.arrivee();
                 // todo : programmer le prochain évènement
             } else if (e instanceof InsertionBarge) {
                 InsertionBarge insertionBarge = (InsertionBarge)e;
-                Logger.getGlobal().info("Insertion de barges dans le simulateur");
+                name = "Insertion de barges dans le simulateur";
+                Logger.getGlobal().info(name);
                 Logger.getGlobal().info(insertionBarge.toString());
                 insertionBarge.insert();
                 mvListener.asMoved();
                 // todo : programmer le prochain évènement
             } else if (e instanceof EnterLeg) {
                 EnterLeg enterLeg = (EnterLeg)e;
-                Logger.getGlobal().info("Entrée dans un leg");
+                name = "Entrée dans un leg";
+                Logger.getGlobal().info(name);
                 Logger.getGlobal().info(enterLeg.toString());
                 enterLeg.move();
                 mvListener.asMoved();
                 // todo : programmer le prochain évènement
             }else if (e instanceof LeaveLeg) {
                 LeaveLeg leaveLeg = (LeaveLeg)e;
-                Logger.getGlobal().info("Quitter un leg");
+                name = "Quitter un leg ";
+                Logger.getGlobal().info(name);
                 Logger.getGlobal().info(leaveLeg.toString());
                 leaveLeg.move();
                 mvListener.asMoved();
@@ -134,6 +144,7 @@ public class Simulator {
             }
             // todo : effectuer le prochain traitement
         }
+        return name;
     }
 
     public Timeline getTimeline() {

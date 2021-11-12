@@ -29,7 +29,7 @@ public class HelloController {
     private SmartGraphPanel<String, String> graphView;
     private AffPane affPane;
 
-    @FXML private Label t_sim;
+    @FXML private Label t_sim,event_txt;
     @FXML private StackPane mainPanel;
     @FXML private Pane pane_barges, pane_terminaux, pane_service,pane_leg,pane_demand;
 
@@ -72,7 +72,7 @@ public class HelloController {
 
     @FXML
     public void nextStep(){
-        this.simulator.moveNextStep();
+        this.event_txt.setText(this.simulator.moveNextStep());
         /* màj du temps */
         Timeline timeline = this.simulator.getTimeline();
         this.t_sim.setText(timeline.getT() + "");

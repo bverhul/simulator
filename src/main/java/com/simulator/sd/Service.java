@@ -3,6 +3,7 @@ package com.simulator.sd;
 import com.simulator.state.ServiceS;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -80,8 +81,8 @@ public class Service {
         sb.append(", depart=").append(depart);
         sb.append(", arrivee=").append(arrivee);
         sb.append(",\n t_debut_charg=").append(t_debut_charg);
-        sb.append(", t_fin_charg=").append(t_fin_charg);
-        sb.append(", t_premier_leg=").append(t_premier_leg);
+        sb.append(",\nt_fin_charg=").append(t_fin_charg);
+        sb.append(",\nt_premier_leg=").append(t_premier_leg);
         sb.append(",\n t_dest=").append(t_dest);
         sb.append(",\n t_debut_stops=").append(t_debut_stops);
         sb.append(",\n t_fin_stops=").append(t_fin_stops);
