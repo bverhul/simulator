@@ -15,6 +15,7 @@ public class Barge {
 	List<Container>lesContainers;
 
 	private Terminal positionTerminal_;
+	private Service service;
 	public Barge(BargeS etat_barge, int position,double v, Terminal terminal) {
 		super();
 		this.IdBarge =id++;
@@ -24,6 +25,7 @@ public class Barge {
 		this.lesContainers = new ArrayList<>();
 		this.positionTerminal_ = terminal;
 		this.position_sur_leg = null;
+		this.service = null;
 	}
 
 
@@ -39,6 +41,12 @@ public class Barge {
 	public void setPosition(int position) {
 
 		this.positionTerminal = position;
+	}
+	public Service getService() {
+		return service;
+	}
+	public void setService(Service service) {
+		this.service = service;
 	}
 
 	public Terminal getPositionTerminal() {

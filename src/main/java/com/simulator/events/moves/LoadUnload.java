@@ -16,6 +16,8 @@ public class LoadUnload extends Event {
     private Terminal terminal;
     private Barge barge;
 
+    private List<Container> containersCharges;
+
     public LoadUnload(int t, boolean isLoading, int quantite, Terminal terminal, Barge barge) {
         super(t);
         this.isLoading = isLoading;
@@ -46,6 +48,7 @@ public class LoadUnload extends Event {
             /* récupère les élements à charger */
             // todo : adapter pour prendre les containers les plus appropriés
             containerList = terminal.lesContainersSurTerminal;
+            this.containersCharges = containerList;
             new_list_barge.addAll(containerList);
             terminal.lesContainersSurTerminal.removeAll(containerList);
             /* envoie les éléments pour chargement */
@@ -53,6 +56,7 @@ public class LoadUnload extends Event {
             /* déchargement */
             /* récupère les élements à charger */
             containerList = barge.getLesContainers().stream().filter(container -> container.getTerminal_destination().equals(terminal)).collect(Collectors.toList());
+            this.containersCharges = containerList;
             /* envoie les éléments pour chargement */
             containerList.forEach(container -> {
                 terminal.ajouterContainer(container);
@@ -98,5 +102,9 @@ public class LoadUnload extends Event {
 
     public void setBarge(Barge barge) {
         this.barge = barge;
+    }
+
+    public List<Container> getContainersCharges() {
+        return containersCharges;
     }
 }

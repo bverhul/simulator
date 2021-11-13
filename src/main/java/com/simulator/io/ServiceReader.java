@@ -62,12 +62,15 @@ public class ServiceReader {
                 List<Barge> bargeList = new ArrayList<>();bargeList.add(new Barge(BargeS.EN_ATTENTE,1,5d,topologie.terminals.get(0)));
 
                 /* ajout du service */
-                services.addService(new Service(
+                Service service = new Service(
                         Integer.parseInt(args[0]), optn_depart_s.get(), optn_arrivee_s.get(),
                         Integer.parseInt(args[6]),Integer.parseInt(args[7]),Integer.parseInt(args[8]),
                         Integer.parseInt(args[9]),
                         map_stops_start,map_stops_stop,list_leg,bargeList
-                ));
+                );
+                services.addService(service);
+
+                bargeList.get(0).setService(service);
                 line = bufReader.readLine();
             }
             bufReader.close();
