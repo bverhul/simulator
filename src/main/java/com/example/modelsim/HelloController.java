@@ -103,4 +103,9 @@ public class HelloController {
     private void updateDemand(){
         affPane.updatePaneDemand(this.pane_demand,this.simulator.getDemandes().getDemandeList());
     }
+    @FXML
+    public void exportStats(){
+        boolean b = this.simulator.getAccumulateurStatistique().exportStats();
+        Logger.getGlobal().info(b?"Export effectué avec succès":"Export raté");
+    }
 }

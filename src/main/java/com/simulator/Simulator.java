@@ -110,6 +110,7 @@ public class Simulator {
                     }
                     /* accumulateurs statistiques */
                     accumulateurStatistique.addTEUService(loadUnload.getContainersCharges(),loadUnload.getBarge().getService());
+                    accumulateurStatistique.addTOccTerminal(loadUnload.getTerminal());
                 }else{
                     /* programmation du prochain évènement */
                     this.timeline.addEvent(new LoadUnload(loadUnload.getT(), true,loadUnload.getQuantite(),loadUnload.getTerminal(),loadUnload.getBarge()));
@@ -198,6 +199,11 @@ public class Simulator {
     public Services getServices() {
         return services;
     }
+
+    public Accumulateur getAccumulateurStatistique() {
+        return accumulateurStatistique;
+    }
+
     public List<Barge> getBarges() {
         List<Barge> listBarge = new LinkedList<>();
         this.services.getL_service().forEach(service -> listBarge.addAll(service.getList_barges()));

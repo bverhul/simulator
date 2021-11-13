@@ -45,6 +45,7 @@
                               <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#cbddee" height="76.0" layoutX="3.0" layoutY="387.0" stroke="BLACK" strokeType="INSIDE" width="218.0" />
                               <Label fx:id="event_txt" layoutX="11.0" layoutY="425.0" prefHeight="32.0" prefWidth="197.0" text=" " textAlignment="CENTER" />
                               <Text layoutX="14.0" layoutY="408.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Evènement en cours" />
+                              <Button layoutX="24.0" layoutY="112.0" mnemonicParsing="false" onAction="#exportStats" prefHeight="32.0" prefWidth="177.0" text="Exporter les accu statistiques" />
                       </children>
                     </AnchorPane>
                     <ScrollPane prefHeight="-1.0" prefWidth="-1.0">
