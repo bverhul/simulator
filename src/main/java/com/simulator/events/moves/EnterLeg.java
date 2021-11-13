@@ -37,4 +37,36 @@ public class EnterLeg extends Event {
         sb.append('}');
         return sb.toString();
     }
+
+    public Terminal getDepart() {
+        return depart;
+    }
+
+    public void setDepart(Terminal depart) {
+        this.depart = depart;
+    }
+
+    public Leg getLeg() {
+        return leg;
+    }
+
+    public void setLeg(Leg leg) {
+        this.leg = leg;
+    }
+
+    public Service getService() {
+        return service;
+    }
+
+    public void setService(Service service) {
+        this.service = service;
+    }
+
+    public Barge getBarge() {
+        return barge;
+    }
+
+    public void setBarge(Barge barge) {
+        this.barge = barge;
+    }
 }

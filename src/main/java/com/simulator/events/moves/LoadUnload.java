@@ -71,4 +71,32 @@ public class LoadUnload extends Event {
     public boolean isLoading() {
         return isLoading;
     }
+
+    public void setLoading(boolean loading) {
+        isLoading = loading;
+    }
+
+    public int getQuantite() {
+        return quantite;
+    }
+
+    public void setQuantite(int quantite) {
+        this.quantite = quantite;
+    }
+
+    public Terminal getTerminal() {
+        return terminal;
+    }
+
+    public void setTerminal(Terminal terminal) {
+        this.terminal = terminal;
+    }
+
+    public Barge getBarge() {
+        return barge;
+    }
+
+    public void setBarge(Barge barge) {
+        this.barge = barge;
+    }
 }

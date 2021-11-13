@@ -6,7 +6,10 @@ import com.simulator.listeners.MoveBargeListener;
 import com.simulator.sd.*;
 import com.simulator.state.ContainerS;
 import com.simulator.state.DemandeS;
+import sun.audio.AudioPlayer;
+import sun.audio.AudioStream;
 
+import java.io.IOException;
 import java.util.*;
 import java.util.logging.Logger;
 
@@ -83,11 +86,10 @@ public class Simulator {
         for(Leg leg : list_leg){
             this.timeline.addEvent(new EnterLeg(i,leg.start,leg,service,barge));
             i += leg.duree;/* temps de déplacement dans le leg */
-            this.timeline.addEvent(new LeaveLeg(i,leg.end,leg,service,barge));
 
             if(service.getT_debut_stops().get(leg.end) != null) {
                 this.timeline.addEvent(new LoadUnload(service.getT_debut_stops().get(leg.end), false, 2, leg.end, barge));
-                this.timeline.addEvent(new LoadUnload(service.getT_fin_stops().get(leg.end), true, 2, leg.end, barge));
+                this.timeline.addEvent(new LoadUnload(service.getT_debut_stops().get(leg.end), true, 2, leg.end, barge));
                 i = service.getT_fin_stops().get(leg.end);
             }
         }
@@ -96,11 +98,20 @@ public class Simulator {
     public String moveNextStep(){
         String name = "";
         Event e = this.timeline.getNextEvent();
-        if(e == null){
+        if(e == null)
+        {
             /* fin de simulation */
             Logger.getGlobal().info("Fin de simulation");
+            /* bruitage */
+            try {
+                AudioPlayer.player.start(new AudioStream(getClass().getResourceAsStream("/end.wav")));
+            } catch (IOException ex) {
+                ex.printStackTrace();
+            }
             name = "Fin de simulation";
-        }else {
+        }
+        else
+        {
             if (e instanceof LoadUnload) {
                 LoadUnload loadUnload = (LoadUnload)e;
                 name = "Chargement/Déchargement";
@@ -108,6 +119,13 @@ public class Simulator {
                 Logger.getGlobal().info(loadUnload.toString());
                 loadUnload.transfert();
                 // todo : programmer le prochain évènement
+                if(loadUnload.isLoading()){
+                    /* programme le départ */
+                    /*
+                    this.timeline.addEvent(new EnterLeg(
+                        ,,,loadUnload.getBarge()
+                    ));*/
+                }
             }else if (e instanceof ArriveeContainer) {
                 ArriveeContainer arriveeContainer = (ArriveeContainer)e;
                 name = "Arrivée de "+ arriveeContainer.getListe().size() +" containers dans le simulateur";
@@ -122,15 +140,31 @@ public class Simulator {
                 Logger.getGlobal().info(insertionBarge.toString());
                 insertionBarge.insert();
                 mvListener.asMoved();
+
+                /* bruitage */
+                try {
+                    AudioPlayer.player.start(new AudioStream(getClass().getResourceAsStream("/barge.wav")));
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
                 // todo : programmer le prochain évènement
             } else if (e instanceof EnterLeg) {
                 EnterLeg enterLeg = (EnterLeg)e;
+                Leg leg = enterLeg.getLeg();
                 name = "Entrée dans un leg";
                 Logger.getGlobal().info(name);
                 Logger.getGlobal().info(enterLeg.toString());
                 enterLeg.move();
                 mvListener.asMoved();
-                // todo : programmer le prochain évènement
+
+                /* bruitage */
+                try {
+                    AudioPlayer.player.start(new AudioStream(getClass().getResourceAsStream("/pouet pouet.wav")));
+                } catch (IOException ex) {
+                    ex.printStackTrace();
+                }
+                /* programmer le départ du leg */
+                this.timeline.addEvent(new LeaveLeg(enterLeg.getT() + leg.duree, leg.end,leg, enterLeg.getService(),enterLeg.getBarge()));
             }else if (e instanceof LeaveLeg) {
                 LeaveLeg leaveLeg = (LeaveLeg)e;
                 name = "Quitter un leg ";
@@ -138,9 +172,11 @@ public class Simulator {
                 Logger.getGlobal().info(leaveLeg.toString());
                 leaveLeg.move();
                 mvListener.asMoved();
+                /* programmer l'arrivée au terminal */
                 // todo : programmer le prochain évènement
             }else {
                 Logger.getGlobal().warning("Evènement non reconnu !");
+                name = "Event non reconnu !";
             }
             // todo : effectuer le prochain traitement
         }
