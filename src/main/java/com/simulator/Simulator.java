@@ -79,16 +79,15 @@ public class Simulator {
      * @param service
      */
     private void scheduleEvents(Barge barge, Service service){
-        int i = 0;
+        int i = service.getT_debut_charg();
         List<Leg> list_leg = service.getList_leg();
         /* ajout du premier chargement */
-        this.timeline.addEvent(new LoadUnload(i,true,2,list_leg.get(0).start,barge));
+        i++;
         for(Leg leg : list_leg){
             this.timeline.addEvent(new EnterLeg(i,leg.start,leg,service,barge));
             i += leg.duree;/* temps de déplacement dans le leg */
 
             if(service.getT_debut_stops().get(leg.end) != null) {
-                this.timeline.addEvent(new LoadUnload(service.getT_debut_stops().get(leg.end), false, 2, leg.end, barge));
                 this.timeline.addEvent(new LoadUnload(service.getT_debut_stops().get(leg.end), true, 2, leg.end, barge));
                 i = service.getT_fin_stops().get(leg.end);
             }
@@ -147,7 +146,8 @@ public class Simulator {
                 } catch (IOException ex) {
                     ex.printStackTrace();
                 }
-                // todo : programmer le prochain évènement
+                /* programmer le chargement de la barge */
+                this.timeline.addEvent(new LoadUnload(this.timeline.getT(),true,2, insertionBarge.terminal, insertionBarge.barge));
             } else if (e instanceof EnterLeg) {
                 EnterLeg enterLeg = (EnterLeg)e;
                 Leg leg = enterLeg.getLeg();
@@ -167,13 +167,16 @@ public class Simulator {
                 this.timeline.addEvent(new LeaveLeg(enterLeg.getT() + leg.duree, leg.end,leg, enterLeg.getService(),enterLeg.getBarge()));
             }else if (e instanceof LeaveLeg) {
                 LeaveLeg leaveLeg = (LeaveLeg)e;
+                Terminal terminal = leaveLeg.getArrivee();
                 name = "Quitter un leg ";
                 Logger.getGlobal().info(name);
                 Logger.getGlobal().info(leaveLeg.toString());
                 leaveLeg.move();
                 mvListener.asMoved();
                 /* programmer l'arrivée au terminal */
-                // todo : programmer le prochain évènement
+                if(leaveLeg.getService().getT_debut_stops().containsKey(terminal)) {
+                    this.timeline.addEvent(new LoadUnload(leaveLeg.getService().getT_debut_stops().get(terminal), false, 2, leaveLeg.getArrivee(), leaveLeg.getBarge()));
+                }
             }else {
                 Logger.getGlobal().warning("Evènement non reconnu !");
                 name = "Event non reconnu !";

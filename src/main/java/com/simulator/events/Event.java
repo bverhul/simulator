@@ -20,9 +20,9 @@ public class Event implements Comparable<Event>{
 
     @Override
     public String toString() {
-        // todo : mettre les nouveaux champs
         final StringBuilder sb = new StringBuilder("Event{");
         sb.append("t=").append(t);
+        sb.append("id=").append(id);
         sb.append('}');
         return sb.toString();
     }

@@ -89,23 +89,18 @@ public class HelloController {
     }
 
     private void updateBarges(){
-        // todo
         affPane.updatePane(this.pane_barges,this.simulator.getBarges());
     }
     private void updateTerminal(){
-        // todo
         affPane.updatePaneTerminal(this.pane_terminaux,this.simulator.getTopologie().terminals);
     }
     private void updateServices(){
-        // todo
         affPane.updatePaneServices(this.pane_service,this.simulator.getServices().getL_service());
     }
     private void updateLeg(){
-        // todo
         affPane.updatePaneLeg(this.pane_leg,this.simulator.getServices().getL_service().get(0).getList_leg());
     }
     private void updateDemand(){
-        // todo
         affPane.updatePaneDemand(this.pane_demand,this.simulator.getDemandes().getDemandeList());
     }
 }
