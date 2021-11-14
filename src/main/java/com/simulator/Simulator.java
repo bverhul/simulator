@@ -90,9 +90,12 @@ public class Simulator {
                 ex.printStackTrace();
             }
             name = "Fin de simulation";
+            /* màj accumulateurs statistiques */
+            this.accumulateurStatistique.setDemandesBilan(this.demandes.getDemandeList());
         }
         else
         {
+            this.accumulateurStatistique.setT(e.getT());
             if (e instanceof LoadUnload) {
                 LoadUnload loadUnload = (LoadUnload)e;
                 name = loadUnload.isLoading()?"Chargement":"Déchargement";
@@ -116,6 +119,7 @@ public class Simulator {
                     this.timeline.addEvent(new LoadUnload(loadUnload.getT(), true,loadUnload.getQuantite(),loadUnload.getTerminal(),loadUnload.getBarge()));
                     /* accumulateurs statistiques */
                     accumulateurStatistique.addTEUTerminal(loadUnload.getContainersCharges(),loadUnload.getTerminal());
+                    this.accumulateurStatistique.changeOccupationTerminal(loadUnload.getTerminal(), loadUnload.getTerminal().lesbargesSurTerminal.size()>0);
                 }
             }else if (e instanceof ArriveeContainer) {
                 ArriveeContainer arriveeContainer = (ArriveeContainer)e;
@@ -161,7 +165,8 @@ public class Simulator {
                 }
                 /* programmer le départ du leg */
                 this.timeline.addEvent(new LeaveLeg(enterLeg.getT() + leg.duree, leg.end,leg, enterLeg.getService(),enterLeg.getBarge()));
-                // todo : accumulateurs statistiques
+                /* accumulateurs statistiques */
+                this.accumulateurStatistique.changeOccupationTerminal(enterLeg.getDepart(),enterLeg.getDepart().lesbargesSurTerminal.size()>0);
             }else if (e instanceof LeaveLeg) {
                 LeaveLeg leaveLeg = (LeaveLeg)e;
                 Terminal terminal = leaveLeg.getArrivee();
