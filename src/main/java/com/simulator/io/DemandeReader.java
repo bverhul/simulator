@@ -4,10 +4,7 @@ import com.simulator.sd.Demande;
 import com.simulator.sd.Demandes;
 import com.simulator.sd.Terminal;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.List;
 
 public class DemandeReader {
@@ -34,6 +31,8 @@ public class DemandeReader {
                 line = bufReader.readLine();
             }
             bufReader.close();
+        }else{
+            throw new FileNotFoundException();
         }
         return demandes;
     }

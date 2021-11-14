@@ -1,0 +1,2 @@
+serviceId;depart;arrivee;liste_leg;chemin_leg;duree_trajet_par_leg;t_debut_charg;t_fin_charg;t_premier_leg;t_dest;stops;end_stops
+1;a1;a1;l1,l2,l3,l4,l5;a1-a2,a2-a3,a3-a4,a4-a5,a5-a1;1,1,1,1,2;0;6;1;6;a2:2,a3:5,a4:9,a5:11;a2:3,a3:6,a4:10,a5:14

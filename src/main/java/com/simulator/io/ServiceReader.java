@@ -3,10 +3,7 @@ package com.simulator.io;
 import com.simulator.sd.*;
 import com.simulator.state.BargeS;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.*;
 
 public class ServiceReader {
@@ -57,7 +54,6 @@ public class ServiceReader {
                     map_stops_stop.put(optn_sommet.get(),Integer.parseInt(args2[1]));
                 });
                 /* --- barges --- */
-                /* todo : récupérer les autres champs */
                 /* par défaut, une barge */
                 List<Barge> bargeList = new ArrayList<>();bargeList.add(new Barge(BargeS.EN_ATTENTE,1,5d,topologie.terminals.get(0)));
 
@@ -74,6 +70,8 @@ public class ServiceReader {
                 line = bufReader.readLine();
             }
             bufReader.close();
+        }else{
+            throw new FileNotFoundException();
         }
         return services;
     }

@@ -13,6 +13,7 @@ import com.simulator.sd.Services;
 import com.simulator.sd.Timeline;
 import com.simulator.sd.Topologie;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
@@ -33,10 +34,14 @@ public class HelloController {
     @FXML private StackPane mainPanel;
     @FXML private Pane pane_barges, pane_terminaux, pane_service,pane_leg,pane_demand;
 
-    public HelloController() throws IOException {
-        Topologie topologie = TopologyReader.TopologyRead("1_topologie.txt");
-        Services services = ServiceReader.ServicesRead("1_services.txt",topologie);
-        Demandes demandes = DemandeReader.DemandeRead("1_demandes.txt",topologie.terminals);
+    @FXML private Button btn_export;
+
+    public void init(String[] args) throws IOException {
+        int id = 1;
+        if(args.length >= 1)id = Integer.parseInt(args[0]);
+        Topologie topologie = TopologyReader.TopologyRead(id+"_topologie.txt");
+        Services services = ServiceReader.ServicesRead(id+"_services.txt",topologie);
+        Demandes demandes = DemandeReader.DemandeRead(id+"_demandes.txt",topologie.terminals);
         this.bargeFX = new ArrayList<>();
 
         this.simulator = new Simulator(topologie, demandes,services);
@@ -47,9 +52,8 @@ public class HelloController {
         this.graphView.setAutomaticLayout(false);
 
         this.affPane = new AffPane();
-    }
 
-    public void init(){
+        this.btn_export.setDisable(true);
         mainPanel.getChildren().add(graphView);
         this.graphView.resize(this.mainPanel.getPrefWidth(),this.mainPanel.getPrefHeight());
         /* --- */
@@ -72,7 +76,9 @@ public class HelloController {
 
     @FXML
     public void nextStep(){
-        this.event_txt.setText(this.simulator.moveNextStep());
+        String s = this.simulator.moveNextStep();
+        this.event_txt.setText(s);
+        if(s.equals("Fin de simulation"))this.btn_export.setDisable(false);
         /* màj du temps */
         Timeline timeline = this.simulator.getTimeline();
         this.t_sim.setText(timeline.getT() + "");

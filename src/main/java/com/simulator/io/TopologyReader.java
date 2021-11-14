@@ -3,10 +3,7 @@ package com.simulator.io;
 import com.simulator.sd.Terminal;
 import com.simulator.sd.Topologie;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -38,6 +35,8 @@ public class TopologyReader {
                 line = bufReader.readLine();
             }
             bufReader.close();
+        }else{
+            throw new FileNotFoundException();
         }
         return liste;
     }
@@ -65,6 +64,8 @@ public class TopologyReader {
             }
 
             bufReader.close();
+        }else{
+            throw new FileNotFoundException();
         }
         return topologie;
     }

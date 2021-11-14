@@ -45,7 +45,7 @@
                               <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#cbddee" height="76.0" layoutX="3.0" layoutY="387.0" stroke="BLACK" strokeType="INSIDE" width="218.0" />
                               <Label fx:id="event_txt" layoutX="11.0" layoutY="425.0" prefHeight="32.0" prefWidth="197.0" text=" " textAlignment="CENTER" />
                               <Text layoutX="14.0" layoutY="408.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Evènement en cours" />
-                              <Button layoutX="24.0" layoutY="112.0" mnemonicParsing="false" onAction="#exportStats" prefHeight="32.0" prefWidth="177.0" text="Exporter les accu statistiques" />
+                              <Button fx:id="btn_export" layoutX="24.0" layoutY="112.0" mnemonicParsing="false" onAction="#exportStats" prefHeight="32.0" prefWidth="177.0" text="Exporter les accu statistiques" />
                       </children>
                     </AnchorPane>
                     <ScrollPane prefHeight="-1.0" prefWidth="-1.0">
@@ -56,7 +56,7 @@
                     <AnchorPane>
                       <children>
                         <Label alignment="CENTER" font="$x1" layoutX="14.0" layoutY="14.0" style="&#10;" text="Details" textAlignment="CENTER" textFill="$x2" wrapText="false" />
-                              <Button layoutX="42.0" layoutY="118.0" mnemonicParsing="false" onAction="#showEvents" text="Afficher liste events" />
+                              <Button layoutX="9.0" layoutY="205.0" mnemonicParsing="false" onAction="#showEvents" text="Afficher liste events dans la console" />
                       </children>
                     </AnchorPane>
                   </items>
@@ -107,6 +107,44 @@
                      </children>
                   </AnchorPane>
                </content>
+            </Tab>
+            <Tab closable="false" text="Credits">
+              <content>
+                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: lightblue;">
+                     <children>
+                        <Text layoutX="28.0" layoutY="79.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Création du simulateur :">
+                           <font>
+                              <Font size="25.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="69.0" layoutY="122.0" stroke="#1e1b1b" strokeType="OUTSIDE" strokeWidth="0.0" text="Benjamin VERHULST, Assia MEGUENI, Harivelo RANDRIANANDRASANA ">
+                           <font>
+                              <Font size="25.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="28.0" layoutY="186.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Librarie graphique pour le graphe :">
+                           <font>
+                              <Font size="25.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="69.0" layoutY="229.0" stroke="#1e1b1b" strokeType="OUTSIDE" strokeWidth="0.0" text="JavaFXSmartGraph par brunomnsilva : https://github.com/brunomnsilva">
+                           <font>
+                              <Font size="25.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="28.0" layoutY="300.0" strokeType="OUTSIDE" strokeWidth="0.0" text="TP de modélisation simulation encadré par :">
+                           <font>
+                              <Font size="25.0" />
+                           </font>
+                        </Text>
+                        <Text layoutX="69.0" layoutY="343.0" stroke="#1e1b1b" strokeType="OUTSIDE" strokeWidth="0.0" text="David DUVIVIER">
+                           <font>
+                              <Font size="25.0" />
+                           </font>
+                        </Text>
+                     </children>
+                  </AnchorPane>
+              </content>
             </Tab>
          </tabs>
       </TabPane>

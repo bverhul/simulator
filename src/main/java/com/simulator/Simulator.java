@@ -100,7 +100,6 @@ public class Simulator {
                 LoadUnload loadUnload = (LoadUnload)e;
                 name = loadUnload.isLoading()?"Chargement":"Déchargement";
                 Logger.getGlobal().info(name);
-                Logger.getGlobal().info(loadUnload.toString());
                 loadUnload.transfert();
                 if(loadUnload.isLoading()){
                     /* programmation du prochain évènement */
@@ -125,7 +124,6 @@ public class Simulator {
                 ArriveeContainer arriveeContainer = (ArriveeContainer)e;
                 name = "Arrivée de "+ arriveeContainer.getListe().size() +" containers dans le simulateur";
                 Logger.getGlobal().info(name);
-                Logger.getGlobal().info(arriveeContainer.toString());
                 arriveeContainer.arrivee();
                 /* accumulateurs statistiques */
                 this.accumulateurStatistique.addNbContainers(arriveeContainer.getListe().size());
@@ -151,9 +149,8 @@ public class Simulator {
             } else if (e instanceof EnterLeg) {
                 EnterLeg enterLeg = (EnterLeg)e;
                 Leg leg = enterLeg.getLeg();
-                name = "Entrée dans un leg";
+                name = "Entrée dans un leg de "+leg.start.getName()+" à "+leg.end.getName();
                 Logger.getGlobal().info(name);
-                Logger.getGlobal().info(enterLeg.toString());
                 enterLeg.move();
                 mvListener.asMoved();
 
@@ -172,7 +169,6 @@ public class Simulator {
                 Terminal terminal = leaveLeg.getArrivee();
                 name = "Quitter un leg ";
                 Logger.getGlobal().info(name);
-                Logger.getGlobal().info(leaveLeg.toString());
                 leaveLeg.move();
                 mvListener.asMoved();
                 /* programmer l'arrivée au terminal */
